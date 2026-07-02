@@ -25,8 +25,8 @@ export default function Deposit() {
 
           <div className="mb-4">
             <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-oet9r2" style={{ width: '100%' }}>
-              <label className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-disabled MuiFormLabel-filled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-sizeSmall MuiInputLabel-outlined css-1k49zai"
-                data-shrink="true">
+              <label className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-colorPrimary Mui-disabled MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined css-9nbiok"
+                data-shrink="false">
                 Wallet Address
               </label>
               <div className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary Mui-disabled MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall MuiInputBase-adornedEnd css-sbcktk">
@@ -39,7 +39,7 @@ export default function Deposit() {
                   </span>
                 </div>
                 <fieldset aria-hidden="true" className="MuiOutlinedInput-notchedOutline css-nqlg3w">
-                  <legend className="css-14lo706"><span>Wallet Address</span></legend>
+                  <legend className="css-yjsfm1"><span>Wallet Address</span></legend>
                 </fieldset>
               </div>
             </div>

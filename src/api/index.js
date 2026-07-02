@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { getMock } from './mock';
 
-const API_BASE = 'https://appgld.8atstreet.com/api';
-const USE_MOCK = true;
+const API_BASE = 'http://localhost:3001/api';
+const USE_MOCK = false;
 
 const api = axios.create({
   baseURL: API_BASE,

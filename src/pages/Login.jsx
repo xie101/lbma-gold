@@ -105,11 +105,14 @@ export default function Login() {
             <span className="inline cursor-pointer text-white ml-1" onClick={() => nav('/register')}>Register</span>
           </div>
 
-          <div className="text-left mt-4 relative">
-            <label className="flex items-start gap-2 cursor-pointer text-[9px] whitespace-nowrap text-gray-400">
+          <div className="text-left mt-4 relative" style={{ fontSize: 9, color: '#9ca3af', lineHeight: 1.4 }}>
+            <label className="flex items-start gap-2 cursor-pointer" style={{ display: 'inline' }}>
               <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mt-0.5 accent-blue-500" />
-              <span>By Continuing you agree to the <span className="cursor-pointer text-white" onClick={() => nav('/terms-conditions')}>Terms of Service</span> and <span className="cursor-pointer text-white" onClick={() => nav('/privacy-policy')}>Privacy Policy</span></span>
             </label>
+            <span>By Continuing you agree to the </span>
+            <span className="cursor-pointer text-white" style={{ fontSize: 9 }} onClick={() => nav('/terms-conditions')}>Terms of Service</span>
+            <span> and </span>
+            <span className="cursor-pointer text-white" style={{ fontSize: 9 }} onClick={() => nav('/privacy-policy')}>Privacy Policy</span>
           </div>
         </form>
       </div>

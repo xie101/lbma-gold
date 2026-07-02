@@ -53,11 +53,21 @@ function PublicRoute({ children }) {
 export default function App() {
   return (
     <Routes>
-      {/* Public routes */}
+      {/* Public routes — auth pages */}
       <Route element={<AuthLayout />}>
         <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
         <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
         <Route path="/register/:inviteCode" element={<PublicRoute><Register /></PublicRoute>} />
+      </Route>
+
+      {/* Public routes — no auth needed (accessible from login page) */}
+      <Route element={<InnerLayout />}>
+        <Route path="/terms-conditions" element={<TermsConditions />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/q-n-a" element={<QnA />} />
+        <Route path="/language" element={<Language />} />
+        <Route path="/service" element={<Service />} />
       </Route>
 
       {/* Private routes — with bottom nav */}
@@ -78,12 +88,6 @@ export default function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/password" element={<Password />} />
         <Route path="/withdraw-password" element={<WithdrawPassword />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/q-n-a" element={<QnA />} />
-        <Route path="/terms-conditions" element={<TermsConditions />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/language" element={<Language />} />
-        <Route path="/service" element={<Service />} />
         <Route path="/convert" element={<Convert />} />
         <Route path="/invite" element={<Invite />} />
         <Route path="/order" element={<Order />} />

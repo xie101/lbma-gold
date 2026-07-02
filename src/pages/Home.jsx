@@ -28,7 +28,7 @@ export default function Home() {
         <div className="mt-4 p-3 bg-white rounded-2xl mb-10">
           <h4 className="text-[#5d1502] underline text-center text-sm">GOLD PRICE QUOTES</h4>
           <div className="chart mt-3" style={{ height: '220px' }}>
-            <iframe src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js?locale=en#%7B%22symbol%22%3A%22OANDA%3AXAUUSD%22%2C%22width%22%3A%22auto%22%2C%22height%22%3A%22220%22%2C%22locale%22%3A%22en%22%2C%22dateRange%22%3A%221D%22%2C%22colorTheme%22%3A%22light%22%2C%22trendLineColor%22%3A%22%2337a6ef%22%2C%22underLineColor%22%3A%22rgba(55%2C166%2C239%2C0.3)%22%2C%22isTransparent%22%3Afalse%2C%22autosize%22%3Atrue%2C%22largeChartUrl%22%3A%22%22%2C%22chartOnly%22%3Afalse%2C%22noTimeScale%22%3Afalse%7D"
+            <iframe scrolling="no" allowtransparency="true" frameBorder="0" src="https://www.tradingview-widget.com/embed-widget/mini-symbol-overview/?locale=en#%7B%22symbol%22%3A%22OANDA%3AXAUUSD%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22dateRange%22%3A%221D%22%2C%22colorTheme%22%3A%22light%22%2C%22isTransparent%22%3Atrue%2C%22autosize%22%3Atrue%2C%22largeChartUrl%22%3A%22%22%2C%22chartOnly%22%3Afalse%2C%22noTimeScale%22%3Afalse%7D"
               style={{ width: '100%', height: '100%', border: 'none' }} title="TradingView" />
           </div>
         </div>

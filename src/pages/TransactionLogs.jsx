@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { transactionHistory } from '../api';
 
 export default function TransactionLogs() {
   const nav = useNavigate();
   const [tab, setTab] = useState('all');
+  const [records, setRecords] = useState([]);
 
-  const records = [
-    { date: '16/06/2026 21:20', type: 'User withdrawal', amount: '-686.00' },
-    { date: '16/06/2026 20:02', type: 'User deposit', amount: '+240.00' },
-  ];
+  useEffect(() => {
+    transactionHistory().then(r => {
+      const d = r.data?.data?.list || r.data?.data || r.data || [];
+      setRecords(Array.isArray(d) ? d : []);
+    }).catch(() => {});
+  }, []);
+
+  const filtered = tab === 'all' ? records : records.filter(r =>
+    tab === 'withdraw list' ? r.type?.toLowerCase().includes('withdraw') : r.type?.toLowerCase().includes('deposit')
+  );
 
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-20">
@@ -26,14 +34,18 @@ export default function TransactionLogs() {
         ))}
       </div>
       <div className="px-4 flex flex-col gap-3">
-        {records.map((r, i) => (
+        {filtered.length === 0 ? (
+          <div className="text-gray-400 text-center text-sm py-10">No records</div>
+        ) : filtered.map((r, i) => (
           <div key={i} className="bg-[#0a1a3a] rounded-xl p-4 border border-[#1a2a4a]">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-400 text-xs">{r.date}</p>
-                <h3 className="text-white font-bold text-sm mt-1">{r.type}</h3>
+                <p className="text-gray-400 text-[10px]">{r.date || r.createdAt}</p>
+                <h3 className="text-white font-bold text-sm mt-1">{r.type || r.description}</h3>
               </div>
-              <span className={`font-bold text-sm ${r.amount.startsWith('-') ? 'text-[#c9a44c]' : 'text-[#c9a44c]'}`}>{r.amount}</span>
+              <span className="text-[#c9a44c] font-bold text-sm">
+                {Number(r.amount) > 0 ? '+' : ''}{r.amount}
+              </span>
             </div>
           </div>
         ))}

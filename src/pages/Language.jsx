@@ -3,28 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const LANGS = [
-  { code: 'en', name: 'English' },
-  { code: 'ar', name: 'Arabic' },
-  { code: 'zh', name: 'Traditional Chinese' },
-  { code: 'ko', name: 'Korean' },
-  { code: 'ja', name: 'Japanese' },
-  { code: 'th', name: 'Thai' },
-  { code: 'vi', name: 'Vietnamese' },
-  { code: 'bn', name: 'Bengali' },
-  { code: 'hi', name: 'Hindi' },
-  { code: 'id', name: 'Indonesian' },
-  { code: 'ms', name: 'Malay' },
-  { code: 'de', name: 'German' },
-  { code: 'es', name: 'Spanish' },
-  { code: 'fr', name: 'French' },
-  { code: 'pt', name: 'Portuguese' },
-  { code: 'ru', name: 'Russian' },
+  'English', 'Arabic', 'Traditional Chinese', 'Portuguese',
+  'Spanish', 'French', 'German', 'Thai',
+  'Hindi', 'Russian', 'Bengali', 'Japanese', 'Korean',
 ];
+
+const LANG_MAP = {
+  'English': 'en', 'Arabic': 'ar', 'Traditional Chinese': 'zh', 'Portuguese': 'pt',
+  'Spanish': 'es', 'French': 'fr', 'German': 'de', 'Thai': 'th',
+  'Hindi': 'hi', 'Russian': 'ru', 'Bengali': 'bn', 'Japanese': 'ja', 'Korean': 'ko',
+};
 
 export default function Language() {
   const nav = useNavigate();
   const { i18n } = useTranslation();
   const [current, setCurrent] = useState(i18n.language || 'en');
+  const currentName = Object.entries(LANG_MAP).find(([, code]) => code === current)?.[0] || 'English';
 
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">
@@ -35,16 +29,24 @@ export default function Language() {
       </div>
       <div className="px-4 mt-2">
         <div className="bg-[#0a1a3a] rounded-xl overflow-hidden">
-          {LANGS.map(l => (
-            <div key={l.code}
-              className={`flex items-center justify-between px-4 py-3.5 border-b border-[#1a2a4a] last:border-b-0 cursor-pointer active:bg-[#1a2a4a] ${current === l.code ? 'bg-[#1a2a4a]' : ''}`}
-              onClick={() => { i18n.changeLanguage(l.code); setCurrent(l.code); }}>
-              <span className="text-white text-sm">{l.name}</span>
-              {current === l.code && <i className="fa-solid fa-check text-[#c9a44c] text-sm"></i>}
-            </div>
-          ))}
+          {LANGS.map(name => {
+            const selected = name === currentName;
+            return (
+              <div key={name}
+                className={`flex items-center justify-between px-4 py-3.5 border-b border-[#1a2a4a] last:border-b-0 cursor-pointer active:bg-[#1a2a4a] ${selected ? 'bg-[#1a2a4a]' : ''}`}
+                onClick={() => { i18n.changeLanguage(LANG_MAP[name]); setCurrent(LANG_MAP[name]); }}>
+                <span className="text-white text-sm">{name}</span>
+                {selected && <i className="fa-solid fa-check text-[#c9a44c] text-sm"></i>}
+              </div>
+            );
+          })}
         </div>
       </div>
+      <form className="px-4 mt-4">
+        <button type="submit" className="w-full h-[44px] rounded-xl bg-[#c9a44c] text-[#1a1a2e] font-bold text-sm border-none cursor-pointer">
+          Confirm
+        </button>
+      </form>
     </div>
   );
 }
