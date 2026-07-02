@@ -1,16 +1,50 @@
-# React + Vite
+# LBMA GOLD — 前端 1:1 反编译还原
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+[goldslbma.com](https://goldslbma.com) 前端像素级重建。
 
-Currently, two official plugins are available:
+## 技术栈
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 19 + Vite 8
+- 路由：react-router-dom v7
+- 样式：original.css (387KB，MD5 逐字节匹配原站)
+- MUI v5 DOM 结构（无运行时依赖，CSS类名+内联样式）
 
-## React Compiler
+## 快速启动
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev     # http://localhost:5173
+npm run build   # dist/
+```
 
-## Expanding the Oxlint configuration
+## 项目结构
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+```
+src/
+├── api/           # API 调用（支持 mock 开发模式）
+├── components/    # Layout（带导航）、InnerLayout（无导航）
+├── pages/         # 34 个页面组件
+├── styles/        # original.css（原站静态CSS）+ mui-runtime.css
+└── i18n/          # 多语言
+public/
+├── images/        # 62 张图片
+└── static/css/    # main.51c4594e.css（构建时逐字节一致）
+```
+
+## 构建产物
+
+| 文件 | 大小 | 说明 |
+|------|------|------|
+| `dist/static/css/main.51c4594e.css` | 387KB | MD5 逐字节匹配原站 |
+| `dist/assets/index-*.js` | 419KB | React 应用 |
+| `dist/index.html` | 1KB | HTML 入口 |
+
+## API Mock
+
+在 `src/api/index.js` 中设置 `USE_MOCK = true` 可跳过 API 签名验证，使用本地模拟数据。
+
+## 页面对照
+
+| 有底部导航 | 无底部导航（返回按钮） |
+|-----------|---------------------|
+| /home, /packages, /record, /my, /shop | 其他所有页面 |
