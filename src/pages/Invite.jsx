@@ -4,7 +4,7 @@ import { getProfile } from '../api';
 
 export default function Invite() {
   const nav = useNavigate();
-  const [inviteCode, setInviteCode] = useState('J5QZ7G');
+  const [inviteCode, setInviteCode] = useState('');
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {

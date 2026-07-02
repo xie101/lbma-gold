@@ -42,9 +42,9 @@ export default function My() {
           <img src="/images/my_touxiag.png" width="50" alt="Profile" />
           <div className="flex-1 text-white text-xs">
             <p className="font-bold text-sm">
-              Email : {profile?.email || 'elaarslan207@gmail.com'}
+              Email : {profile?.email || '--'}
             </p>
-            <p>Invite Code : {profile?.inviteCode || 'J5QZ7G'}</p>
+            <p>Invite Code : {profile?.inviteCode || '--'}</p>
           </div>
           <span className="cursor-pointer absolute right-0 top-5" onClick={() => nav('/profile')}>
             <img src="/images/my_qinadao.png" className="relative" width="110" alt="Security Settings" />
@@ -60,7 +60,7 @@ export default function My() {
           <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center px-3">
             <p className="text-[#f4e6b9] text-xs font-bold tracking-wider">MY WALLET</p>
             <p className="text-white text-2xl font-bold mt-1">
-              {profile?.balance || '0.11'} USDT
+              {profile?.balance ?? '--'} USDT
             </p>
             <div className="flex gap-2 mt-2">
               <span

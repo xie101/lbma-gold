@@ -49,7 +49,7 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (res) => res,
   (err) => {
-    if (err.response?.status === 401 && getToken() !== 'dev') {
+    if (err.response?.status === 401) {
       removeToken();
       window.location.href = '/login';
     }

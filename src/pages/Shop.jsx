@@ -1,7 +1,14 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getProfile } from '../api';
 
 export default function Shop() {
   const nav = useNavigate();
+  const [profile, setProfile] = useState(null);
+
+  useEffect(() => {
+    getProfile().then(r => { setProfile(r.data?.data || r.data || {}); }).catch(() => {});
+  }, []);
 
   return (
     <div
@@ -12,7 +19,7 @@ export default function Shop() {
       <div className="flex items-center justify-between px-3 pt-8 pb-2">
         <div className="flex items-center justify-start gap-2 relative">
           <img src="/images/buy_xingming.png" height="24" alt="user" className="h-[24px]" />
-          <span className="text-white text-xs uppercase absolute left-[30px] top-[50%] translate-y-[-50%]">Ela Arslan002</span>
+          <span className="text-white text-xs uppercase absolute left-[30px] top-[50%] translate-y-[-50%]">{profile?.realName || profile?.email || ''}</span>
         </div>
         <span className="text-white text-xl cursor-pointer">
           <i className="fa-solid fa-bars"></i>

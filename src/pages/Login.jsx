@@ -18,7 +18,6 @@ export default function Login() {
     if (!email || !password) { notyf.error('Please fill in all fields'); return; }
     if (!agreed) { notyf.error('Please agree to the Terms of Service'); return; }
     setLoading(true);
-      if (email === 'elaarslan207@gmail.com' && password === 'Qrhw12278') { setToken('dev'); nav('/home'); return; }
     try {
       const res = await login({ email, password });
       if (res.data?.token || res.data?.data?.token) {
