@@ -17,7 +17,9 @@ export default function Password() {
   const handle = async (e) => {
     e.preventDefault();
     if (!oldPw || !newPw || !confirm) { notyf.error('Fill all fields'); return; }
+    if (newPw.length < 6) { notyf.error('New password must be at least 6 characters'); return; }
     if (newPw !== confirm) { notyf.error('Passwords do not match'); return; }
+    if (newPw === oldPw) { notyf.error('New password must differ from old'); return; }
     setLoading(true);
     try { await setPassword({ oldPassword: oldPw, newPassword: newPw }); notyf.success('Password changed'); }
     catch (err) { notyf.error(err.response?.data?.message || 'Failed'); }

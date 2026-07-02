@@ -36,6 +36,8 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !password || !confirmPw) { notyf.error('Please fill in all fields'); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { notyf.error('Invalid email format'); return; }
+    if (password.length < 6) { notyf.error('Password must be at least 6 characters'); return; }
     if (password !== confirmPw) { notyf.error('Passwords do not match'); return; }
     if (!agreed) { notyf.error('Please agree to the Terms'); return; }
     setLoading(true);
