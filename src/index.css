@@ -1,0 +1,10 @@
+/* Minimaal overrides — original.css has all the real styles */
+body {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  background: #000;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+#root {
+  min-height: 100vh;
+}
