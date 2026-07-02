@@ -23,6 +23,9 @@ const MOCK_DATA = {
   '/trade/getOrder': { list: [
     { orderNo: 'ORD20260701001', amount: 500, createdAt: '2026-07-01 11:00', status: 'completed', weight: '0.0473' },
     { orderNo: 'ORD20260630001', amount: 200, createdAt: '2026-06-30 08:30', status: 'pending', weight: '0.0231' },
+    { orderNo: 'ORD20260629003', amount: 350, createdAt: '2026-06-29 15:45', status: 'completed', weight: '0.0354' },
+    { orderNo: 'ORD20260628002', amount: 800, createdAt: '2026-06-28 09:20', status: 'completed', weight: '0.0721' },
+    { orderNo: 'ORD20260627001', amount: 150, createdAt: '2026-06-27 14:10', status: 'cancelled', weight: '0.0155' },
   ]},
   '/trade/vipList': { currentLevel: 5, progress: { current: 2500, max: 10000 }, list: [
     { level: 1, commission: '4%', min: '$20.00', max: '$499.99' },
