@@ -1,15 +1,26 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { orderInfo } from '../api';
+import { Notyf } from 'notyf';
+import { orderInfo, doOrder, rotOrder } from '../api';
+
+const notyf = new Notyf({ position: { x: 'center', y: 'top' }, duration: 3000 });
 
 export default function Order() {
   const { orderNumber } = useParams();
   const nav = useNavigate();
   const [order, setOrder] = useState({});
+  const [acting, setActing] = useState(false);
 
-  useEffect(() => {
-    orderInfo({ orderNumber }).then(r => setOrder(r.data?.data || {})).catch(() => {});
-  }, [orderNumber]);
+  const load = () => orderInfo({ orderNumber }).then(r => setOrder(r.data?.data || {})).catch(() => {});
+  useEffect(() => { load(); }, [orderNumber]);
+
+  const act = async (fn, okMsg) => {
+    if (!order.orderNo) return;
+    setActing(true);
+    try { await fn(order.orderNo); notyf.success(okMsg); load(); }
+    catch (e) { notyf.error(e.response?.data?.message || 'Failed'); }
+    finally { setActing(false); }
+  };
 
   const fields = [
     ['Order No', order.orderNo],
@@ -46,6 +57,14 @@ export default function Order() {
             </div>
           ))}
         </div>
+        {order.status === 'pending' && (
+          <div className="flex gap-3 mt-3">
+            <button onClick={() => act(doOrder, 'Order completed')} disabled={acting}
+              className="flex-1 h-[40px] rounded-lg bg-[#c9a44c] text-[#1a1a2e] font-bold text-xs disabled:opacity-50 border-none cursor-pointer">Confirm Order</button>
+            <button onClick={() => act(rotOrder, 'Order cancelled')} disabled={acting}
+              className="flex-1 h-[40px] rounded-lg bg-[#1a2a4a] text-white font-bold text-xs disabled:opacity-50 border border-[#2a3a5a] cursor-pointer">Cancel</button>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Notyf } from 'notyf';
-import { postConvert } from '../api';
+import { postConvert, getProfile } from '../api';
 
 const notyf = new Notyf({ position: { x: 'center', y: 'top' }, duration: 3000 });
 
@@ -10,6 +10,8 @@ export default function Convert() {
   const [amount, setAmount] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [profile, setProfile] = useState({});
+  useEffect(() => { getProfile().then(r => setProfile(r.data?.data || r.data || {})).catch(() => {}); }, []);
 
   const handleConvert = async (e) => {
     e.preventDefault();
@@ -34,7 +36,7 @@ export default function Convert() {
       <div className="px-4 mt-2">
         <div className="bg-[#0a1a3a] rounded-xl p-4 mb-4">
           <p className="text-gray-400 text-xs mb-1">Your Balance</p>
-          <h2 className="text-[#c9a44c] text-2xl font-bold">$0.0000</h2>
+          <h2 className="text-[#c9a44c] text-2xl font-bold">${Number(profile?.balance || 0).toFixed(4)}</h2>
         </div>
         <div className="bg-[#0a1a3a] rounded-xl p-4">
           <form onSubmit={handleConvert}>

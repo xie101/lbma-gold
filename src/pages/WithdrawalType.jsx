@@ -27,6 +27,7 @@ export default function WithdrawalType() {
       </div>
       <div className="px-4 flex flex-col gap-3">
         <a className="block bg-[#0a1a3a] rounded-xl px-4 py-4 text-white font-bold text-sm text-center no-underline border border-[#1a2a4a] hover:border-[#c9a44c] transition" onClick={() => nav('/withdrawalUSDT')} style={{ cursor: 'pointer', textDecoration: 'none' }}>USDT</a>
+        <a className="block bg-[#0a1a3a] rounded-xl px-4 py-4 text-white font-bold text-sm text-center no-underline border border-[#1a2a4a] hover:border-[#c9a44c] transition" onClick={() => nav('/withdrawal')} style={{ cursor: 'pointer', textDecoration: 'none' }}>Bank Transfer</a>
       </div>
     </div>
   );
