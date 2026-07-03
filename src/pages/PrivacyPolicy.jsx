@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getPrivacyPolicy } from '../api';
 
 const CONTENT = `<p><span style="font-size:28pt"><span style="font-family:&quot;Calibri Light&quot;"><span style="font-size:24.0000pt"><span style="font-family:'Calibri Light'">PRIVACY POLICY</span></span></span></span></p>
 
@@ -193,6 +195,10 @@ const CONTENT = `<p><span style="font-size:28pt"><span style="font-family:&quot;
 
 export default function PrivacyPolicy() {
   const nav = useNavigate();
+  const [html, setHtml] = useState(CONTENT);
+  useEffect(() => {
+    getPrivacyPolicy().then(r => { const c = r.data?.data?.content; if (c) setHtml(c); }).catch(() => {});
+  }, []);
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">
       <div className="flex items-center px-4 pt-3 pb-4">
@@ -202,7 +208,7 @@ export default function PrivacyPolicy() {
       </div>
       <div className="px-4 mt-2">
         <div className="bg-[#0a1a3a] rounded-xl p-4">
-          <div className="text-gray-300 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: CONTENT }} />
+          <div className="text-gray-300 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: html }} />
         </div>
       </div>
     </div>

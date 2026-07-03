@@ -1,7 +1,27 @@
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { orderInfo } from '../api';
 
 export default function Order() {
+  const { orderNumber } = useParams();
   const nav = useNavigate();
+  const [order, setOrder] = useState({});
+
+  useEffect(() => {
+    orderInfo({ orderNumber }).then(r => setOrder(r.data?.data || {})).catch(() => {});
+  }, [orderNumber]);
+
+  const fields = [
+    ['Order No', order.orderNo],
+    ['Match time', order.createdAt],
+    ['Gold Weight', order.weight],
+    ['Buy Price', order.buyPrice],
+    ['Sell Price', order.sellPrice],
+    ['Total Order Amount', order.amount],
+    ['commission', order.commission],
+    ['expected return', order.expectedReturn],
+    ['Status', order.status],
+  ];
 
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-cover bg-top bg-no-repeat pb-10"
@@ -19,10 +39,10 @@ export default function Order() {
         style={{ backgroundImage: "url('/images/order_kuang.png')", backgroundSize: '100% 100%' }}>
         <h4 className="text-white text-center text-sm font-bold pb-3 border-b border-gray-700">Gold details</h4>
         <div className="py-2">
-          {[['Match time', ''], ['Gold Weight', ''], ['Buy Price', '$/oz'], ['Sell Price', '$/oz'], ['Total Order Amount', ''], ['commission', ''], ['expected return', '']].map(([label, value], i) => (
+          {fields.map(([label, value], i) => (
             <div key={i} className="flex justify-between py-2.5 border-b border-gray-800 last:border-b-0">
               <span className="text-gray-400 text-xs">{label}</span>
-              <span className="text-white text-xs font-bold">{value}</span>
+              <span className="text-white text-xs font-bold">{value ?? '--'}</span>
             </div>
           ))}
         </div>

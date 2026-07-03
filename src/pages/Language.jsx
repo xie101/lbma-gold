@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { setLang as apiSetLang } from '../api';
 
 const LANGS = [
   'English', 'Arabic', 'Traditional Chinese', 'Portuguese',
@@ -18,7 +19,16 @@ export default function Language() {
   const nav = useNavigate();
   const { i18n } = useTranslation();
   const [current, setCurrent] = useState(i18n.language || 'en');
+  const [saving, setSaving] = useState(false);
   const currentName = Object.entries(LANG_MAP).find(([, code]) => code === current)?.[0] || 'English';
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setSaving(true);
+    try { await apiSetLang(current); } catch {}
+    setSaving(false);
+    nav(-1);
+  };
 
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">
@@ -42,9 +52,9 @@ export default function Language() {
           })}
         </div>
       </div>
-      <form className="px-4 mt-4">
-        <button type="submit" className="w-full h-[44px] rounded-xl bg-[#c9a44c] text-[#1a1a2e] font-bold text-sm border-none cursor-pointer">
-          Confirm
+      <form className="px-4 mt-4" onSubmit={submit}>
+        <button type="submit" disabled={saving} className="w-full h-[44px] rounded-xl bg-[#c9a44c] text-[#1a1a2e] font-bold text-sm border-none cursor-pointer disabled:opacity-60">
+          {saving ? 'Saving...' : 'Confirm'}
         </button>
       </form>
     </div>

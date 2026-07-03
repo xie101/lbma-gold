@@ -95,6 +95,7 @@ export const getPages = () => api.get('/common/pages');
 export const getAbout = () => api.get('/common/about');
 export const getCountryCode = () => api.get('/common/countryCode');
 export const getDepositConfig = () => api.get('/common/getDeposit');
+export const getDeposit = getDepositConfig; // alias used by Deposit/Deposits pages
 export const getETHConfig = () => api.get('/common/getETHConfig');
 export const getSupport = () => api.post('/common/getSupport');
 export const getPrivacyPolicy = () => api.get('/common/privacyPolicy');

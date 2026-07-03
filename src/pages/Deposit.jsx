@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getDepositConfig } from '../api';
 
 export default function Deposit() {
   const nav = useNavigate();
   const [copied, setCopied] = useState(false);
-  const addr = 'TY7Et9sA35fKyMFdwCh4b7tUKXc6SFbFvT';
+  const [addr, setAddr] = useState('');
+  useEffect(() => {
+    getDepositConfig().then(r => setAddr(r.data?.data?.address || '')).catch(() => {});
+  }, []);
 
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">

@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getTermsCondition } from '../api';
 
 const CONTENT = `<p><span style="font-size:11pt"><span style="font-family:Calibri"><span style="font-size:20.0000pt"><span style="font-family:Calibri">TERMS OF SERVICE</span></span></span></span></p>
 <p><span style="font-size:11pt"><span style="font-family:Calibri"><span style="font-size:12.0000pt"><span style="font-family:Calibri">Welcome to </span></span><span style="font-size:12.0000pt"><span style="font-family:宋体"><span style="font-family:Calibri">cnbn</span></span></span><span style="font-size:12.0000pt"><span style="font-family:Calibri"> and thank you for visiting our website.</span></span></span></span></p>
@@ -85,6 +87,10 @@ const CONTENT = `<p><span style="font-size:11pt"><span style="font-family:Calibr
 
 export default function TermsConditions() {
   const nav = useNavigate();
+  const [html, setHtml] = useState(CONTENT);
+  useEffect(() => {
+    getTermsCondition().then(r => { const c = r.data?.data?.content; if (c) setHtml(c); }).catch(() => {});
+  }, []);
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">
       <div className="flex items-center px-4 pt-3 pb-4">
@@ -94,7 +100,7 @@ export default function TermsConditions() {
       </div>
       <div className="px-4 mt-2">
         <div className="bg-[#0a1a3a] rounded-xl p-4">
-          <div className="text-gray-300 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: CONTENT }} />
+          <div className="text-gray-300 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: html }} />
         </div>
       </div>
     </div>
