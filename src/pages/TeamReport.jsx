@@ -1,24 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const STATS = [
-  ['Team  balance', 'USDT 2111197.5935'],
-  ['Team cash flow', 'USDT 61.7535'],
-  ['Team total top up', 'USDT 0'],
-  ['Team total withdraw', 'USDT 0'],
-  ['Team order commission', 'USDT 0'],
-  ['Headcount', '0'],
-  ['Direct push', '0'],
-  ['Team of people', '20'],
-  ['New number of people', '0'],
-  ['Activity people', '0'],
-];
+import { teamReport } from '../api';
 
 const LEVELS = ['First level', 'Second level', 'Third level'];
 
 export default function TeamReport() {
   const nav = useNavigate();
   const [level, setLevel] = useState(0);
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    teamReport().then(r => {
+      setData(r.data?.data || r.data || {});
+    }).catch(() => {});
+  }, []);
+
+  const STATS = [
+    ['Team  balance', `USDT ${data.teamBalance || '0'}`],
+    ['Team cash flow', `USDT ${data.teamCashFlow || '0'}`],
+    ['Team total top up', `USDT ${data.teamTopUp || '0'}`],
+    ['Team total withdraw', `USDT ${data.teamWithdraw || '0'}`],
+    ['Team order commission', `USDT ${data.teamCommission || '0'}`],
+    ['Headcount', String(data.headcount || '0')],
+    ['Direct push', String(data.directPush || '0')],
+    ['Team of people', String(data.teamPeople || '0')],
+    ['New number of people', String(data.newPeople || '0')],
+    ['Activity people', String(data.activityPeople || '0')],
+  ];
+
+  const list = data.list || [];
 
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-20">
@@ -50,7 +60,17 @@ export default function TeamReport() {
       </div>
 
       <div className="px-4 flex flex-col gap-3">
-        <div className="text-gray-400 text-center text-sm mt-10">No record available</div>
+        {list.length === 0 ? (
+          <div className="text-gray-400 text-center text-sm mt-10">No record available</div>
+        ) : list.map((r, i) => (
+          <div key={i} className="bg-[#0a1a3a] rounded-lg px-4 py-3 flex justify-between items-center">
+            <div>
+              <p className="text-white text-sm">{r.email || r.name}</p>
+              <p className="text-gray-400 text-xs">{r.date || r.createdAt}</p>
+            </div>
+            <span className="text-[#c9a44c] text-sm font-bold">+{r.commission || 0} USDT</span>
+          </div>
+        ))}
       </div>
     </div>
   );
