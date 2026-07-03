@@ -32,9 +32,15 @@ export default function Home() {
         {banners.length > 0 ? (
           <div className="mt-4 flex flex-col gap-2">
             {banners.map((b, i) => (
-              <div key={i} className="rounded-xl p-3 cursor-pointer bg-[#0a1a3a]/80 border border-[#c9a44c]/30" onClick={() => nav('/deposit')}>
-                {b.title && <p className="text-[#c9a44c] text-sm font-bold">{b.title}</p>}
-                {b.content && <p className="text-gray-300 text-xs mt-1 whitespace-pre-line">{b.content}</p>}
+              <div key={i} className="cursor-pointer" onClick={() => nav('/deposit')}>
+                {b.image ? (
+                  <img src={b.image} alt={b.title || 'banner'} className="rounded-xl w-full" />
+                ) : (
+                  <div className="rounded-xl p-3 bg-[#0a1a3a]/80 border border-[#c9a44c]/30">
+                    {b.title && <p className="text-[#c9a44c] text-sm font-bold">{b.title}</p>}
+                    {b.content && <p className="text-gray-300 text-xs mt-1 whitespace-pre-line">{b.content}</p>}
+                  </div>
+                )}
               </div>
             ))}
           </div>

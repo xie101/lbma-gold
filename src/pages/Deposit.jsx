@@ -1,14 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import QRCode from 'qrcode';
 import { getDepositConfig } from '../api';
 
 export default function Deposit() {
   const nav = useNavigate();
   const [copied, setCopied] = useState(false);
   const [addr, setAddr] = useState('');
+  const canvasRef = useRef(null);
   useEffect(() => {
     getDepositConfig().then(r => setAddr(r.data?.data?.address || '')).catch(() => {});
   }, []);
+  useEffect(() => {
+    if (addr && canvasRef.current) QRCode.toCanvas(canvasRef.current, addr, { width: 128 }).catch(() => {});
+  }, [addr]);
 
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">
@@ -22,7 +27,7 @@ export default function Deposit() {
           <h3 className="text-white text-sm font-bold text-center mb-3">Make Payment to Address:</h3>
           <div className="flex justify-center mb-3">
             <div className="bg-white p-2 rounded-lg">
-              <canvas height="128" width="128" style={{ height: 128, width: 128 }}></canvas>
+              <canvas ref={canvasRef} height="128" width="128" style={{ height: 128, width: 128 }}></canvas>
             </div>
           </div>
           <h4 className="text-[#c9a44c] text-center text-sm font-bold mb-4">USDT-TRC</h4>

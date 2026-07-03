@@ -24,6 +24,7 @@
     "notyf": "^3.10.0",
     "pixelmatch": "^7.2.0",
     "pngjs": "^7.0.0",
+    "qrcode": "^1.5.4",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-i18next": "^17.0.8",

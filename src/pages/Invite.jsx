@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import QRCode from 'qrcode';
 import { getProfile } from '../api';
 
 export default function Invite() {
   const nav = useNavigate();
   const [inviteCode, setInviteCode] = useState('');
   const [copied, setCopied] = useState(false);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     getProfile().then(r => {
@@ -15,6 +17,9 @@ export default function Invite() {
   }, []);
 
   const link = `https://goldslbma.com/register/${inviteCode}`;
+  useEffect(() => {
+    if (inviteCode && canvasRef.current) QRCode.toCanvas(canvasRef.current, link, { width: 128 }).catch(() => {});
+  }, [inviteCode, link]);
 
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">
@@ -31,7 +36,7 @@ export default function Invite() {
             <img alt="Logo" height="80" />
           </div>
           <div className="bg-white p-2 rounded-lg mb-3">
-            <canvas height="128" width="128" style={{ height: 128, width: 128 }}></canvas>
+            <canvas ref={canvasRef} height="128" width="128" style={{ height: 128, width: 128 }}></canvas>
           </div>
           <h4 className="text-[#c9a44c] text-lg font-bold mb-4">{inviteCode}</h4>
           <div className="w-full">
