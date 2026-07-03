@@ -88,6 +88,8 @@ export const vipList = () => api.post('/trade/vipList');
 export const postDeposit = (data) => api.post('/user/postDeposit', data);
 export const postWithdraw = (data) => api.post('/user/postWithdraw', data);
 export const postConvert = (data) => api.post('/user/postConvert', data);
+export const postTicket = (data) => api.post('/user/postTicket', data);
+export const myTickets = () => api.get('/user/tickets');
 
 // ─── Common ───
 export const getBanner = () => api.get('/common/banner');
