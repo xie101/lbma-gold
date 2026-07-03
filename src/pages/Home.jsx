@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getBanner } from '../api';
 
 const HEADER_LINKS = [
   { img: '/images/home_la.png', label: 'Language', path: '/language' },
@@ -9,6 +11,11 @@ const HEADER_LINKS = [
 
 export default function Home() {
   const nav = useNavigate();
+  const [banners, setBanners] = useState([]);
+
+  useEffect(() => {
+    getBanner().then(r => setBanners(r.data?.data || [])).catch(() => {});
+  }, []);
 
   return (
     <div className="min-h-[80vh] text-center bg-cover max-w-[400px] mx-auto pb-10">
@@ -22,9 +29,20 @@ export default function Home() {
             </span>
           ))}
         </div>
-        <div className="mt-4 cursor-pointer" onClick={() => nav('/deposit')}>
-          <img src="/images/home_high.png" alt="Top up" />
-        </div>
+        {banners.length > 0 ? (
+          <div className="mt-4 flex flex-col gap-2">
+            {banners.map((b, i) => (
+              <div key={i} className="rounded-xl p-3 cursor-pointer bg-[#0a1a3a]/80 border border-[#c9a44c]/30" onClick={() => nav('/deposit')}>
+                {b.title && <p className="text-[#c9a44c] text-sm font-bold">{b.title}</p>}
+                {b.content && <p className="text-gray-300 text-xs mt-1 whitespace-pre-line">{b.content}</p>}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-4 cursor-pointer" onClick={() => nav('/deposit')}>
+            <img src="/images/home_high.png" alt="Top up" />
+          </div>
+        )}
         <div className="mt-4 p-3 bg-white rounded-2xl mb-10">
           <h4 className="text-[#5d1502] underline text-center text-sm">GOLD PRICE QUOTES</h4>
           <div className="chart mt-3" style={{ height: '220px' }}>
