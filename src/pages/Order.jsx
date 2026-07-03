@@ -17,7 +17,7 @@ export default function Order() {
   const act = async (fn, okMsg) => {
     if (!order.orderNo) return;
     setActing(true);
-    try { await fn(order.orderNo); notyf.success(okMsg); load(); }
+    try { await fn({ orderNo: order.orderNo }); notyf.success(okMsg); load(); }
     catch (e) { notyf.error(e.response?.data?.message || 'Failed'); }
     finally { setActing(false); }
   };
