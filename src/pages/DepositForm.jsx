@@ -31,7 +31,7 @@ export default function DepositForm() {
         <div className="bg-[#0a1a3a] rounded-xl p-4 space-y-4">
           <p className="text-gray-400 text-xs">Please enter the amount you wish to deposit</p>
           <div><label className="text-gray-400 text-xs block mb-2">Amount (USDT)</label><input type="number" min="0.01" step="0.01" style={inp} value={amount} onChange={e => setAmount(e.target.value)} placeholder="Enter amount" required /></div>
-          <button type="submit" disabled={loading} style={{ width: '100%', padding: 12, background: '#c9a44c', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
+          <button type="submit" disabled={loading} style={{ width: '100%', padding: 12, background: 'var(--brand)', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
             {loading ? 'Submitting...' : 'Submit'}
           </button>
         </div>

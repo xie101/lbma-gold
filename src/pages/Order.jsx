@@ -60,7 +60,7 @@ export default function Order() {
         {order.status === 'pending' && (
           <div className="flex gap-3 mt-3">
             <button onClick={() => act(doOrder, 'Order completed')} disabled={acting}
-              className="flex-1 h-[40px] rounded-lg bg-[#c9a44c] text-[#1a1a2e] font-bold text-xs disabled:opacity-50 border-none cursor-pointer">Confirm Order</button>
+              className="flex-1 h-[40px] rounded-lg bg-[var(--brand)] text-[#1a1a2e] font-bold text-xs disabled:opacity-50 border-none cursor-pointer">Confirm Order</button>
             <button onClick={() => act(rotOrder, 'Order cancelled')} disabled={acting}
               className="flex-1 h-[40px] rounded-lg bg-[#1a2a4a] text-white font-bold text-xs disabled:opacity-50 border border-[#2a3a5a] cursor-pointer">Cancel</button>
           </div>

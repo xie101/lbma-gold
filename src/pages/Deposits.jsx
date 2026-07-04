@@ -21,7 +21,7 @@ export default function Deposits() {
       <div className="px-4">
         <div className="bg-[#0a1a3a] rounded-xl p-4 text-center">
           <p className="text-gray-400 text-sm">Deposit type: {type}</p>
-          {addr && <p className="text-[#c9a44c] text-sm font-bold mt-2 break-all">{addr}</p>}
+          {addr && <p className="text-[var(--brand)] text-sm font-bold mt-2 break-all">{addr}</p>}
         </div>
       </div>
     </div>

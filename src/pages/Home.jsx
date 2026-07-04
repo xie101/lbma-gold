@@ -36,8 +36,8 @@ export default function Home() {
                 {b.image ? (
                   <img src={b.image} alt={b.title || 'banner'} className="rounded-xl w-full" />
                 ) : (
-                  <div className="rounded-xl p-3 bg-[#0a1a3a]/80 border border-[#c9a44c]/30">
-                    {b.title && <p className="text-[#c9a44c] text-sm font-bold">{b.title}</p>}
+                  <div className="rounded-xl p-3 bg-[#0a1a3a]/80 border border-[var(--brand)]/30">
+                    {b.title && <p className="text-[var(--brand)] text-sm font-bold">{b.title}</p>}
                     {b.content && <p className="text-gray-300 text-xs mt-1 whitespace-pre-line">{b.content}</p>}
                   </div>
                 )}

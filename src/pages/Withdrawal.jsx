@@ -34,7 +34,7 @@ export default function Withdrawal() {
           {[{ label: 'Account Number', val: account, set: setAccount, ph: 'Enter account number' }, { label: 'IFSC Code', val: ifsc, set: setIfsc, ph: 'IFSC code' }, { label: 'Amount (USDT)', val: amount, set: setAmount, ph: 'Enter amount', type: 'number', min: '0.01', step: '0.01' }].map(({ label, val, set, ph, type, min, step }, i) => (
             <div key={i}><label className="text-gray-400 text-xs block mb-2">{label}</label><input type={type || 'text'} min={min} step={step} style={inp} value={val} onChange={e => set(e.target.value)} placeholder={ph} required /></div>
           ))}
-          <button type="submit" disabled={loading} style={{ width: '100%', padding: 12, background: '#c9a44c', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
+          <button type="submit" disabled={loading} style={{ width: '100%', padding: 12, background: 'var(--brand)', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
             {loading ? 'Submitting...' : 'Submit'}
           </button>
         </div>

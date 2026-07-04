@@ -52,7 +52,7 @@ export default function TeamReport() {
       <div className="flex px-4 gap-2 mb-4">
         {LEVELS.map((name, i) => (
           <span key={i}
-            className={`flex-1 text-center py-2 text-xs rounded-lg cursor-pointer font-bold ${level === i ? 'bg-[#c9a44c] text-[#1a1a2e]' : 'bg-[#0a1a3a] text-gray-400'}`}
+            className={`flex-1 text-center py-2 text-xs rounded-lg cursor-pointer font-bold ${level === i ? 'bg-[var(--brand)] text-[#1a1a2e]' : 'bg-[#0a1a3a] text-gray-400'}`}
             onClick={() => setLevel(i)}>
             {name}
           </span>
@@ -68,7 +68,7 @@ export default function TeamReport() {
               <p className="text-white text-sm">{r.email || r.name}</p>
               <p className="text-gray-400 text-xs">{r.date || r.createdAt}</p>
             </div>
-            <span className="text-[#c9a44c] text-sm font-bold">+{r.commission || 0} USDT</span>
+            <span className="text-[var(--brand)] text-sm font-bold">+{r.commission || 0} USDT</span>
           </div>
         ))}
       </div>

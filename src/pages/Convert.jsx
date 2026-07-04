@@ -36,7 +36,7 @@ export default function Convert() {
       <div className="px-4 mt-2">
         <div className="bg-[#0a1a3a] rounded-xl p-4 mb-4">
           <p className="text-gray-400 text-xs mb-1">Your Balance</p>
-          <h2 className="text-[#c9a44c] text-2xl font-bold">${(Number(profile?.balance || 0) - Number(profile?.frozen_balance || 0)).toFixed(4)}</h2>
+          <h2 className="text-[var(--brand)] text-2xl font-bold">${(Number(profile?.balance || 0) - Number(profile?.frozen_balance || 0)).toFixed(4)}</h2>
         </div>
         <div className="bg-[#0a1a3a] rounded-xl p-4">
           <form onSubmit={handleConvert}>
@@ -88,7 +88,7 @@ export default function Convert() {
             </div>
 
             <button type="submit" disabled={loading}
-              className="w-full h-[44px] rounded-xl bg-[#c9a44c] text-[#1a1a2e] font-bold text-sm disabled:opacity-50 border-none cursor-pointer">
+              className="w-full h-[44px] rounded-xl bg-[var(--brand)] text-[#1a1a2e] font-bold text-sm disabled:opacity-50 border-none cursor-pointer">
               {loading ? 'Converting...' : 'Convert Now'}
             </button>
           </form>

@@ -28,7 +28,7 @@ export default function TransactionLogs() {
       <div className="flex px-4 gap-2 mb-4">
         {['All Types', 'Withdraw List', 'Deposit List'].map(t => (
           <span key={t} onClick={() => setTab(t.toLowerCase())}
-            className={`flex-1 text-center py-2 text-xs rounded-lg cursor-pointer ${tab === t.toLowerCase() ? 'bg-[#c9a44c] text-[#1a1a2e] font-bold' : 'bg-[#0a1a3a] text-gray-400'}`}>
+            className={`flex-1 text-center py-2 text-xs rounded-lg cursor-pointer ${tab === t.toLowerCase() ? 'bg-[var(--brand)] text-[#1a1a2e] font-bold' : 'bg-[#0a1a3a] text-gray-400'}`}>
             {t}
           </span>
         ))}
@@ -44,7 +44,7 @@ export default function TransactionLogs() {
                 <h3 className="text-white font-bold text-sm mt-1">{r.type}</h3>
                 {r.description && r.description !== r.type && <p className="text-gray-400 text-xs mt-0.5">{r.description}</p>}
               </div>
-              <span className="text-[#c9a44c] font-bold text-sm">
+              <span className="text-[var(--brand)] font-bold text-sm">
                 {Number(r.amount) > 0 ? '+' : ''}{r.amount}
               </span>
             </div>

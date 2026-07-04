@@ -35,7 +35,7 @@ export default function Account() {
                 <span className="text-white text-sm">{item.label}</span>
                 <div className="flex items-center gap-2">
                   {item.extra}
-                  {item.right !== undefined && <span className={item.highlight ? 'text-[#c9a44c] text-xs' : 'text-gray-400 text-xs'}>{item.right}</span>}
+                  {item.right !== undefined && <span className={item.highlight ? 'text-[var(--brand)] text-xs' : 'text-gray-400 text-xs'}>{item.right}</span>}
                   <i className="fa-solid fa-chevron-right text-gray-500 text-xs"></i>
                 </div>
               </div>

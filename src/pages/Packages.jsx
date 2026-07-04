@@ -41,7 +41,7 @@ export default function Packages() {
         <div className="px-5 mt-6">
           <div className="flex justify-between items-center mb-1">
             <span className="text-white text-xs">next level away</span>
-            <span className="text-[#c9a44c] text-xs">{vipData.progress.current}/{vipData.progress.max}</span>
+            <span className="text-[var(--brand)] text-xs">{vipData.progress.current}/{vipData.progress.max}</span>
           </div>
           <div className="relative h-[10px] rounded-full overflow-hidden"
             style={{ backgroundImage: "url('/images/shop_heidi.png')", backgroundSize: '100% 100%' }}>

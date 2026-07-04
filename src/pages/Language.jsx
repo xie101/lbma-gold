@@ -46,14 +46,14 @@ export default function Language() {
                 className={`flex items-center justify-between px-4 py-3.5 border-b border-[#1a2a4a] last:border-b-0 cursor-pointer active:bg-[#1a2a4a] ${selected ? 'bg-[#1a2a4a]' : ''}`}
                 onClick={() => { i18n.changeLanguage(LANG_MAP[name]); setCurrent(LANG_MAP[name]); }}>
                 <span className="text-white text-sm">{name}</span>
-                {selected && <i className="fa-solid fa-check text-[#c9a44c] text-sm"></i>}
+                {selected && <i className="fa-solid fa-check text-[var(--brand)] text-sm"></i>}
               </div>
             );
           })}
         </div>
       </div>
       <form className="px-4 mt-4" onSubmit={submit}>
-        <button type="submit" disabled={saving} className="w-full h-[44px] rounded-xl bg-[#c9a44c] text-[#1a1a2e] font-bold text-sm border-none cursor-pointer disabled:opacity-60">
+        <button type="submit" disabled={saving} className="w-full h-[44px] rounded-xl bg-[var(--brand)] text-[#1a1a2e] font-bold text-sm border-none cursor-pointer disabled:opacity-60">
           {saving ? 'Saving...' : 'Confirm'}
         </button>
       </form>

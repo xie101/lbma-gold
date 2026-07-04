@@ -33,7 +33,7 @@ export default function WithdrawPassword() {
         <div className="bg-[#0a1a3a] rounded-xl p-4 space-y-4">
           <div><label className="text-gray-400 text-xs block mb-2">Withdraw Password</label><input type="password" style={inp} value={pw} onChange={e => setPw(e.target.value)} required /></div>
           <div><label className="text-gray-400 text-xs block mb-2">Confirm Password</label><input type="password" style={inp} value={confirm} onChange={e => setConfirm(e.target.value)} required /></div>
-          <button type="submit" disabled={loading} style={{ width: '100%', padding: 12, background: '#c9a44c', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
+          <button type="submit" disabled={loading} style={{ width: '100%', padding: 12, background: 'var(--brand)', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
             {loading ? 'Setting...' : 'Set Password'}
           </button>
         </div>

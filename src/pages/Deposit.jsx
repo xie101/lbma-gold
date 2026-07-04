@@ -30,7 +30,7 @@ export default function Deposit() {
               <canvas ref={canvasRef} height="128" width="128" style={{ height: 128, width: 128 }}></canvas>
             </div>
           </div>
-          <h4 className="text-[#c9a44c] text-center text-sm font-bold mb-4">USDT-TRC</h4>
+          <h4 className="text-[var(--brand)] text-center text-sm font-bold mb-4">USDT-TRC</h4>
 
           <div className="mb-4">
             <div className="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root css-oet9r2" style={{ width: '100%' }}>
@@ -43,7 +43,7 @@ export default function Deposit() {
                   className="MuiInputBase-input MuiOutlinedInput-input Mui-disabled MuiInputBase-inputSizeSmall MuiInputBase-inputAdornedEnd css-1jf37tt"
                   value={addr} />
                 <div className="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeSmall css-1ti6y9h">
-                  <span className="text-[#c9a44c] cursor-pointer text-xs" onClick={() => { navigator.clipboard.writeText(addr); setCopied(true); setTimeout(() => setCopied(false), 2000); }}>
+                  <span className="text-[var(--brand)] cursor-pointer text-xs" onClick={() => { navigator.clipboard.writeText(addr); setCopied(true); setTimeout(() => setCopied(false), 2000); }}>
                     {copied ? 'Copied!' : 'copy'}
                   </span>
                 </div>

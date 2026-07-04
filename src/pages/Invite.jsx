@@ -38,14 +38,14 @@ export default function Invite() {
           <div className="bg-white p-2 rounded-lg mb-3">
             <canvas ref={canvasRef} height="128" width="128" style={{ height: 128, width: 128 }}></canvas>
           </div>
-          <h4 className="text-[#c9a44c] text-lg font-bold mb-4">{inviteCode}</h4>
+          <h4 className="text-[var(--brand)] text-lg font-bold mb-4">{inviteCode}</h4>
           <div className="w-full">
             <label className="text-gray-400 text-xs block mb-2">Referral Url</label>
             <div className="flex items-center bg-[#0a0e1a] rounded-lg border border-[#374151] overflow-hidden">
               <input readOnly value={link}
                 className="flex-1 bg-transparent text-white text-xs px-3 py-2.5 outline-none truncate" />
               <span onClick={() => { navigator.clipboard.writeText(link); setCopied(true); setTimeout(() => setCopied(false), 2000); }}
-                className="text-[#c9a44c] text-xs cursor-pointer px-3 whitespace-nowrap">
+                className="text-[var(--brand)] text-xs cursor-pointer px-3 whitespace-nowrap">
                 {copied ? 'Copied!' : 'copy'}
               </span>
             </div>

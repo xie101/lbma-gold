@@ -40,7 +40,7 @@ export default function WithdrawalUSDT() {
       <div className="px-4 mb-4">
         <div className="bg-[#0a1a3a] rounded-xl p-4">
           <p className="text-gray-400 text-xs">Available Balance</p>
-          <p className="text-[#c9a44c] text-2xl font-bold">{available.toFixed(2)} <span className="text-sm">USDT</span></p>
+          <p className="text-[var(--brand)] text-2xl font-bold">{available.toFixed(2)} <span className="text-sm">USDT</span></p>
           {Number(profile.frozen_balance || 0) > 0 && (
             <p className="text-gray-500 text-xs mt-1">Frozen: {profile.frozen_balance} USDT (pending withdrawal)</p>
           )}
@@ -57,7 +57,7 @@ export default function WithdrawalUSDT() {
           </div>
           <div><label className="text-gray-400 text-xs block mb-2">Wallet Address</label><input type="text" style={inp} value={address} onChange={e => setAddress(e.target.value)} placeholder="Enter wallet address" required /></div>
           <div><label className="text-gray-400 text-xs block mb-2">Amount</label><input type="number" min="0.01" step="0.01" style={inp} value={amount} onChange={e => setAmount(e.target.value)} placeholder="Enter amount" required /></div>
-          <button type="submit" disabled={loading} style={{ width: '100%', padding: 12, background: '#c9a44c', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
+          <button type="submit" disabled={loading} style={{ width: '100%', padding: 12, background: 'var(--brand)', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
             {loading ? 'Submitting...' : 'Submit'}
           </button>
         </div>

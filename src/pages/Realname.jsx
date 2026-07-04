@@ -83,7 +83,7 @@ export default function Realname() {
             <div><label className="text-gray-400 text-xs block mb-2">ID Number</label><input type="text" style={inp} value={idNumber} onChange={e => setIdNumber(e.target.value)} placeholder="Enter ID number" /></div>
             <div><label className="text-gray-400 text-xs block mb-2">ID Front Photo</label><input type="file" accept="image/*" style={{ color: '#fff', fontSize: 12 }} onChange={async e => setIdFront(await toBase64(e.target.files[0]))} /></div>
             <div><label className="text-gray-400 text-xs block mb-2">ID Back Photo</label><input type="file" accept="image/*" style={{ color: '#fff', fontSize: 12 }} onChange={async e => setIdBack(await toBase64(e.target.files[0]))} /></div>
-            <button type="submit" disabled={loading} style={{ width: '100%', padding: 12, background: '#c9a44c', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
+            <button type="submit" disabled={loading} style={{ width: '100%', padding: 12, background: 'var(--brand)', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
               {loading ? 'Submitting...' : kyc === 'rejected' ? 'Resubmit' : 'Submit'}
             </button>
           </div>

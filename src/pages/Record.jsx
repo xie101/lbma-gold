@@ -48,7 +48,7 @@ export default function Record() {
             <div className="flex items-center justify-between mt-3">
               <div>
                 <span className="text-white text-lg font-bold">$ {Number(r.amount || r.price || 0).toFixed(2)}</span>
-                <p className="text-[#c9a44c] text-xs">{r.weight || '0.0473'} oz</p>
+                <p className="text-[var(--brand)] text-xs">{r.weight || '0.0473'} oz</p>
                 <p className="text-gray-400 text-xs">Actual amount paid</p>
               </div>
             </div>

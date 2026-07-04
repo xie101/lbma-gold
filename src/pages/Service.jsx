@@ -44,7 +44,7 @@ export default function Service() {
           <p className="text-white text-sm font-bold mb-3">Submit a Ticket</p>
           <input className="w-full bg-[#0a0e1a] text-white text-sm rounded-lg px-3 py-2 mb-2 outline-none border border-[#1a2a4a]" placeholder="Subject" value={subject} onChange={e => setSubject(e.target.value)} />
           <textarea className="w-full bg-[#0a0e1a] text-white text-sm rounded-lg px-3 py-2 mb-3 outline-none border border-[#1a2a4a]" rows={3} placeholder="Describe your issue..." value={message} onChange={e => setMessage(e.target.value)} />
-          <button type="submit" disabled={loading} className="w-full h-[40px] rounded-lg bg-[#c9a44c] text-[#1a1a2e] font-bold text-sm disabled:opacity-50 border-none cursor-pointer">{loading ? 'Submitting...' : 'Submit Ticket'}</button>
+          <button type="submit" disabled={loading} className="w-full h-[40px] rounded-lg bg-[var(--brand)] text-[#1a1a2e] font-bold text-sm disabled:opacity-50 border-none cursor-pointer">{loading ? 'Submitting...' : 'Submit Ticket'}</button>
         </form>
       </div>
 
@@ -55,7 +55,7 @@ export default function Service() {
             <div key={t.id} className="px-4 py-3 border-b border-[#1a2a4a] last:border-b-0">
               <div className="flex justify-between mb-1">
                 <span className="text-white text-sm font-bold">{t.subject || '(no subject)'}</span>
-                <span className="text-[#c9a44c] text-xs">{t.status}</span>
+                <span className="text-[var(--brand)] text-xs">{t.status}</span>
               </div>
               <p className="text-gray-400 text-xs">{t.message}</p>
               {t.reply && <p className="text-green-400 text-xs mt-2 bg-[#0a0e1a] rounded p-2">Support: {t.reply}</p>}

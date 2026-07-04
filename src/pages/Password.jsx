@@ -43,7 +43,7 @@ export default function Password() {
             </div>
           ))}
           <button type="submit" disabled={loading}
-            style={{ width: '100%', padding: 12, background: '#c9a44c', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
+            style={{ width: '100%', padding: 12, background: 'var(--brand)', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
             {loading ? 'Changing...' : 'Change Password'}
           </button>
         </div>
