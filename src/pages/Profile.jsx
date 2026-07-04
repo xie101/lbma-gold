@@ -12,8 +12,9 @@ export default function Profile() {
     }).catch(() => {});
   }, []);
 
+  const kycText = (s) => s === 'approved' ? 'Verified' : s === 'pending' ? 'Reviewing' : s === 'rejected' ? 'Rejected' : null;
   const items = [
-    { label: 'Real Name', path: '/realname', value: profile?.realName || 'Set' },
+    { label: 'Real Name', path: '/realname', value: kycText(profile?.kyc_status) || profile?.realName || 'Set' },
     { label: 'Bind Wallet Address', path: '/bank', value: 'Set' },
     { label: 'Password management', path: '/password' },
     { label: 'Withdraw Password management', path: '/withdraw-password' },
