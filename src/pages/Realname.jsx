@@ -71,7 +71,7 @@ export default function Realname() {
         </div></div>
       )}
 
-      {kyc !== 'approved' && (
+      {kyc !== 'approved' && kyc !== 'pending' && (
         <form onSubmit={handle} className="px-4 mt-4">
           <div className="bg-[#0a1a3a] rounded-xl p-4 space-y-4">
             <div><label className="text-gray-400 text-xs block mb-2">Real Name</label><input type="text" style={inp} value={name} onChange={e => setNameVal(e.target.value)} placeholder="Enter your real name" required /></div>

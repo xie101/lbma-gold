@@ -21,7 +21,7 @@ export default function WithdrawalType() {
         <div className="bg-[#0a1a3a] rounded-xl p-4 text-center">
           <p className="text-gray-400 text-xs">Available Balance</p>
           <p className="text-[#c9a44c] text-2xl font-bold mt-1">
-            {profile?.balance ?? '--'} <span className="text-sm">USDT</span>
+            {(Number(profile?.balance || 0) - Number(profile?.frozen_balance || 0)).toFixed(2)} <span className="text-sm">USDT</span>
           </p>
         </div>
       </div>
