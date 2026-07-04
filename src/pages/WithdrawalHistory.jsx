@@ -28,7 +28,9 @@ export default function WithdrawalHistory() {
             <div className="flex justify-between py-1.5 border-b border-gray-800"><span className="text-gray-400 text-xs">Transaction Time</span><span className="text-white text-xs">{r.createdAt || r.date || ''}</span></div>
             <div className="flex justify-between py-1.5 border-b border-gray-800"><span className="text-gray-400 text-xs">Order Number</span><span className="text-white text-xs">{r.orderNo || r.id}</span></div>
             <div className="flex justify-between py-1.5 border-b border-gray-800"><span className="text-gray-400 text-xs">Amount(USDT)</span><span className="text-white text-xs font-bold">{r.amount || 0}</span></div>
+            {r.address && <div className="flex justify-between py-1.5 border-b border-gray-800 gap-2"><span className="text-gray-400 text-xs shrink-0">Address</span><span className="text-white text-xs break-all text-right">{r.address}</span></div>}
             <div className="flex justify-between py-1.5"><span className="text-gray-400 text-xs">Status</span><span className="text-[#c9a44c] text-xs font-bold">{r.status || 'pending'}</span></div>
+            {r.rejectReason && <div className="py-1.5"><span className="text-red-400 text-xs">Reason: {r.rejectReason}</span></div>}
           </div>
         ))}
       </div>

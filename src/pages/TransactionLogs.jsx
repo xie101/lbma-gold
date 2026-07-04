@@ -41,7 +41,8 @@ export default function TransactionLogs() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-gray-400 text-[10px]">{r.date || r.createdAt}</p>
-                <h3 className="text-white font-bold text-sm mt-1">{r.type || r.description}</h3>
+                <h3 className="text-white font-bold text-sm mt-1">{r.type}</h3>
+                {r.description && r.description !== r.type && <p className="text-gray-400 text-xs mt-0.5">{r.description}</p>}
               </div>
               <span className="text-[#c9a44c] font-bold text-sm">
                 {Number(r.amount) > 0 ? '+' : ''}{r.amount}

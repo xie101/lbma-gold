@@ -25,6 +25,8 @@ export default function Shop() {
 
   const start = async () => {
     if (balance <= 0) { notyf.error('Insufficient balance, please deposit first'); return; }
+    const min = parseFloat((vip?.min || '$0').replace(/[^0-9.]/g, '')) || 0;
+    if (min > 0 && balance < min) { notyf.error(`Balance below Level ${tier} minimum (${vip.min})`); return; }
     setLoading(true);
     try {
       const r = await submitOrder({ tier: Number(tier) || 1, amount: balance });

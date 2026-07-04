@@ -13,7 +13,7 @@ export default function Bank() {
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(null);
 
-  useEffect(() => { getBank().then(r => { const d = r.data?.data || r.data || {}; if (d.account) setSaved(d); }).catch(() => {}); }, []);
+  useEffect(() => { getBank().then(r => { const d = r.data?.data || r.data || {}; if (d.account) { setInfo({ name: d.name || '', account: d.account, ifsc: d.ifsc || '' }); setSaved(d); } }).catch(() => {}); }, []);
   const set = (k, v) => setInfo({ ...info, [k]: v });
 
   const handle = async (e) => {

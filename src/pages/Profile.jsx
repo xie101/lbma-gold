@@ -32,6 +32,9 @@ export default function Profile() {
           <div className="bg-[#0a1a3a] rounded-xl p-4 mb-4 text-center">
             <p className="text-white text-sm font-bold">{profile.email}</p>
             <p className="text-gray-400 text-xs mt-1">Balance: {profile.balance || 0} USDT</p>
+            {Number(profile.frozen_balance || 0) > 0 && (
+              <p className="text-gray-500 text-xs">Frozen: {profile.frozen_balance} USDT</p>
+            )}
           </div>
         )}
         <div className="bg-[#0a1a3a] rounded-xl overflow-hidden">

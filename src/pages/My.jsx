@@ -62,6 +62,9 @@ export default function My() {
             <p className="text-white text-2xl font-bold mt-1">
               {profile?.balance ?? '--'} USDT
             </p>
+            {Number(profile?.frozen_balance || 0) > 0 && (
+              <p className="text-gray-400 text-xs mt-1">Frozen: {profile.frozen_balance} USDT (pending withdrawal)</p>
+            )}
             <div className="flex gap-2 mt-2">
               <span
                 className="bg-[#292f44] text-[#e3d6ad] text-xs px-4 py-1 rounded cursor-pointer"
