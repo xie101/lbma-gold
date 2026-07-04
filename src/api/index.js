@@ -47,7 +47,15 @@ api.interceptors.request.use((config) => {
 
 // Response interceptor - handle auth errors & network issues
 api.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    if (res.data && res.data.code !== undefined && res.data.code !== 0) {
+      const msg = res.data.data?.message || res.data.message || 'Request failed';
+      const e = new Error(msg);
+      e.response = { data: { message: msg } };
+      return Promise.reject(e);
+    }
+    return res;
+  },
   (err) => {
     if (err.response?.status === 401) {
       removeToken();
