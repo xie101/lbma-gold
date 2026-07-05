@@ -84,7 +84,7 @@ export default function Login() {
           </div>
 
           <div className="mb-4 text-left">
-            <span className="cursor-pointer text-blue-500 text-sm" onClick={() => nav('/password')}>
+            <span className="cursor-pointer text-blue-500 text-sm" onClick={() => notyf.info('Please contact customer support to reset your password')}>
               Forgot Password?
             </span>
           </div>
