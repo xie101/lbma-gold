@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import api from './api';
+import api from './api/index.js';
 
 const ConfigCtx = createContext({});
 export const useConfig = () => useContext(ConfigCtx);
