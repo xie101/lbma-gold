@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Notyf } from 'notyf';
+import { notyf } from '../utils/notify';
 import { register, setToken } from '../api';
 
-const notyf = new Notyf({ position: { x: 'center', y: 'top' }, duration: 3000 });
 
 function Field({ label, type, value, onChange, required }) {
   return (

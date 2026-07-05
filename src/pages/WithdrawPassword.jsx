@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Notyf } from 'notyf';
+import { notyf } from '../utils/notify';
 import { setWithdrawPassword } from '../api';
 
-const notyf = new Notyf({ position: { x: 'center', y: 'top' }, duration: 3000 });
-const inp = { width: '100%', padding: '10px 12px', background: '#0a0e1a', border: '1px solid #374151', borderRadius: 8, color: '#fff', fontSize: 14, outline: 'none' };
+import { inp } from '../utils/inputs';
 
 export default function WithdrawPassword() {
   const nav = useNavigate();

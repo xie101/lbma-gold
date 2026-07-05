@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Notyf } from 'notyf';
+import { notyf } from '../utils/notify';
 import { setName, getProfile } from '../api';
 
-const notyf = new Notyf({ position: { x: 'center', y: 'top' }, duration: 3000 });
-const inp = { width: '100%', padding: '10px 12px', background: '#0a0e1a', border: '1px solid #374151', borderRadius: 8, color: '#fff', fontSize: 14, outline: 'none' };
+import { inp } from '../utils/inputs';
 const toBase64 = async (file) => {
   if (!file) return '';
   if (file.size > 5 * 1024 * 1024) { notyf.error('Image too large (max 5MB)'); return ''; }

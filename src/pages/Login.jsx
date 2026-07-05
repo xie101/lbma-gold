@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Notyf } from 'notyf';
+import { notyf } from '../utils/notify';
 import { login, setToken } from '../api';
 
-const notyf = new Notyf({ position: { x: 'center', y: 'top' }, duration: 3000 });
 
 export default function Login() {
   const nav = useNavigate();

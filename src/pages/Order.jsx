@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Notyf } from 'notyf';
+import { notyf } from '../utils/notify';
 import { orderInfo, doOrder, rotOrder } from '../api';
 
-const notyf = new Notyf({ position: { x: 'center', y: 'top' }, duration: 3000 });
 
 export default function Order() {
   const { orderNumber } = useParams();
