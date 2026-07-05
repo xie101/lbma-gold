@@ -20,7 +20,7 @@ export default function Convert() {
     setLoading(true);
     try {
       await postConvert({ amount: Number(amount), password });
-      notyf.success('Conversion submitted');
+      notyf.success(`Converted ${amount} USDT`);
       setAmount(''); setPassword('');
     } catch (err) { notyf.error(err.response?.data?.message || 'Failed'); }
     finally { setLoading(false); }
