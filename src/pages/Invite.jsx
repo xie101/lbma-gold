@@ -33,7 +33,7 @@ export default function Invite() {
       <div className="px-4 mt-2">
         <div className="bg-[#0a1a3a] rounded-xl p-6 flex flex-col items-center">
           <div className="mb-4">
-            <img alt="Logo" height="80" />
+            <img src="/images/auth_shang.png" alt="Logo" height="80" />
           </div>
           <div className="bg-white p-2 rounded-lg mb-3">
             <canvas ref={canvasRef} height="128" width="128" style={{ height: 128, width: 128 }}></canvas>
