@@ -5,7 +5,12 @@ import { setName, getProfile } from '../api';
 
 const notyf = new Notyf({ position: { x: 'center', y: 'top' }, duration: 3000 });
 const inp = { width: '100%', padding: '10px 12px', background: '#0a0e1a', border: '1px solid #374151', borderRadius: 8, color: '#fff', fontSize: 14, outline: 'none' };
-const toBase64 = (file) => file ? new Promise(r => { const rd = new FileReader(); rd.onload = () => r(rd.result); rd.readAsDataURL(file); }) : Promise.resolve('');
+const toBase64 = async (file) => {
+  if (!file) return '';
+  if (file.size > 5 * 1024 * 1024) { notyf.error('Image too large (max 5MB)'); return ''; }
+  if (!file.type.startsWith('image/')) { notyf.error('Please upload an image file'); return ''; }
+  return new Promise(r => { const rd = new FileReader(); rd.onload = () => r(rd.result); rd.readAsDataURL(file); });
+};
 
 export default function Realname() {
   const nav = useNavigate();
