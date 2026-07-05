@@ -40,15 +40,15 @@ export default function Record() {
             <div className="flex items-center gap-3">
               <img src="/images/logs_haungjin.png" width="70" alt="gold" className="rounded-lg" />
               <div className="flex-1">
-                <h4 className="text-white font-bold text-sm text-left">{r.weight || '0.0473'} oz</h4>
-                <p className="text-gray-400 text-xs mt-1">Order Time: {r.createdAt || r.date}</p>
-                <p className="text-gray-400 text-xs">Order details: {r.status || 'Completed'}</p>
+                <h4 className="text-white font-bold text-sm text-left">{r.weight || '—'} oz</h4>
+                <p className="text-gray-400 text-xs mt-1">Order Time: {r.createdAt || r.date || '—'}</p>
+                <p className="text-gray-400 text-xs">Order details: {r.status || '—'}</p>
               </div>
             </div>
             <div className="flex items-center justify-between mt-3">
               <div>
                 <span className="text-white text-lg font-bold">$ {Number(r.amount || r.price || 0).toFixed(2)}</span>
-                <p className="text-[var(--brand)] text-xs">{r.weight || '0.0473'} oz</p>
+                <p className="text-[var(--brand)] text-xs">{r.weight || '—'} oz</p>
                 <p className="text-gray-400 text-xs">Actual amount paid</p>
               </div>
             </div>
