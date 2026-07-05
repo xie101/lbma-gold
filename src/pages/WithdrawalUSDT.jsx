@@ -11,6 +11,7 @@ export default function WithdrawalUSDT() {
   const [amount, setAmount] = useState('');
   const [address, setAddress] = useState('');
   const [type, setType] = useState('USDT');
+  const [pwd, setPwd] = useState('');
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState({});
 
@@ -21,11 +22,12 @@ export default function WithdrawalUSDT() {
   const handle = async (e) => {
     e.preventDefault();
     if (!amount || !address) { notyf.error('Please fill all fields'); return; }
+    if (!pwd) { notyf.error('Enter withdrawal password'); return; }
     if (Number(amount) <= 0) { notyf.error('Amount must be greater than 0'); return; }
     if (Number(amount) > available) { notyf.error(`Exceeds available balance (${available.toFixed(2)})`); return; }
     if (address.length < 20) { notyf.error('Invalid wallet address'); return; }
     setLoading(true);
-    try { await postWithdraw({ amount: Number(amount), address, type }); notyf.success('Withdrawal submitted'); nav('/withdrawal-history'); }
+    try { await postWithdraw({ amount: Number(amount), address, type, password: pwd }); notyf.success('Withdrawal submitted'); nav('/withdrawal-history'); }
     catch (err) { notyf.error(err.response?.data?.message || 'Failed'); }
     finally { setLoading(false); }
   };
@@ -57,6 +59,7 @@ export default function WithdrawalUSDT() {
           </div>
           <div><label className="text-gray-400 text-xs block mb-2">Wallet Address</label><input type="text" style={inp} value={address} onChange={e => setAddress(e.target.value)} placeholder="Enter wallet address" required /></div>
           <div><label className="text-gray-400 text-xs block mb-2">Amount</label><input type="number" min="0.01" step="0.01" style={inp} value={amount} onChange={e => setAmount(e.target.value)} placeholder="Enter amount" required /></div>
+          <div><label className="text-gray-400 text-xs block mb-2">Withdrawal Password</label><input type="password" style={inp} value={pwd} onChange={e => setPwd(e.target.value)} placeholder="Enter withdrawal password" required /></div>
           <button type="submit" disabled={loading} style={{ width: '100%', padding: 12, background: 'var(--brand)', color: '#000', fontWeight: 'bold', borderRadius: 8, border: 'none', fontSize: 14, cursor: 'pointer', opacity: loading ? 0.5 : 1 }}>
             {loading ? 'Submitting...' : 'Submit'}
           </button>
