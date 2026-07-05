@@ -30,7 +30,7 @@ export default function Convert() {
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">
       <div className="flex items-center px-4 pt-3 pb-4">
         <span className="text-white cursor-pointer text-lg" onClick={() => nav(-1)}><i className="fa-solid fa-chevron-left"></i></span>
-        <span className="flex-1 text-center text-white font-bold text-base">Convert to Balance</span>
+        <span className="flex-1 text-center text-white font-bold text-base">Convert to Gold</span>
         <span className="w-[18px]"></span>
       </div>
       <div className="px-4 mt-2">
