@@ -8,8 +8,7 @@ export const useConfig = () => useContext(ConfigCtx);
 export function ConfigProvider({ children }) {
   const [config, setConfig] = useState({});
   useEffect(() => {
-    const sub = window.location.hostname.split('.')[0];
-    api.get('/common/config', { params: { subdomain: sub } })
+    api.get('/common/config')
       .then(r => setConfig(r.data?.data || {}))
       .catch(() => {});
   }, []);
