@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getPrivacyPolicy } from '../api';
@@ -45,7 +46,7 @@ export default function PrivacyPolicy() {
       </div>
       <div className="px-4 mt-2">
         <div className="bg-[#0a1a3a] rounded-xl p-4">
-          <div className="text-gray-300 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: html }} />
+          <div className="text-gray-300 text-sm leading-relaxed" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
         </div>
       </div>
     </div>

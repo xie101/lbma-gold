@@ -1,3 +1,4 @@
+import DOMPurify from 'dompurify';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAbout } from '../api';
@@ -39,7 +40,7 @@ export default function About() {
       </div>
       <div className="px-4 mt-2">
         <div className="bg-[#0a1a3a] rounded-xl p-4 text-gray-300 text-sm leading-relaxed">
-          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(html) }} />
         </div>
       </div>
     </div>
