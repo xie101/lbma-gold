@@ -11,8 +11,11 @@ export default function Bank() {
   const [info, setInfo] = useState({ name: '', account: '', ifsc: '' });
   const [loading, setLoading] = useState(false);
   const [saved, setSaved] = useState(null);
+  const [initLoading, setInitLoading] = useState(true);
 
-  useEffect(() => { getBank().then(r => { const d = r.data?.data || r.data || {}; if (d.account) { setInfo({ name: d.name || '', account: d.account, ifsc: d.ifsc || '' }); setSaved(d); } }).catch(() => {}); }, []);
+  useEffect(() => { getBank().then(r => { const d = r.data?.data || r.data || {}; if (d.account) { setInfo({ name: d.name || '', account: d.account, ifsc: d.ifsc || '' }); setSaved(d); } }).catch(() => {}).finally(() => setInitLoading(false)); }, []);
+
+  if (initLoading) return <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10"><Loading /></div>;
   const set = (k, v) => setInfo({ ...info, [k]: v });
 
   const handle = async (e) => {

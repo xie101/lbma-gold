@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { postConvert, getProfile } from '../api';
+import Loading from '../components/Loading';
 
 
 export default function Convert() {
@@ -10,7 +11,9 @@ export default function Convert() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState({});
-  useEffect(() => { getProfile().then(r => setProfile(r.data?.data || r.data || {})).catch(() => {}); }, []);
+  const [initLoading, setInitLoading] = useState(true);
+  useEffect(() => { getProfile().then(r => setProfile(r.data?.data || r.data || {})).catch(() => {}).finally(() => setInitLoading(false)); }, []);
+  if (initLoading) return <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10"><Loading /></div>;
 
   const handleConvert = async (e) => {
     e.preventDefault();

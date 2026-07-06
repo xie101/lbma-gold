@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { orderInfo, doOrder, rotOrder } from '../api';
+import Loading from '../components/Loading';
 
 
 export default function Order() {
@@ -9,9 +10,12 @@ export default function Order() {
   const nav = useNavigate();
   const [order, setOrder] = useState({});
   const [acting, setActing] = useState(false);
+  const [initLoading, setInitLoading] = useState(true);
 
-  const load = () => orderInfo({ orderNumber }).then(r => setOrder(r.data?.data || {})).catch(() => {});
+  const load = () => orderInfo({ orderNumber }).then(r => setOrder(r.data?.data || {})).catch(() => {}).finally(() => setInitLoading(false));
   useEffect(() => { load(); }, [orderNumber]);
+
+  if (initLoading) return <div className="min-h-screen max-w-[400px] mx-auto bg-cover bg-top bg-no-repeat pb-10" style={{ backgroundImage: "url('/images/order_beijing.png')" }}><Loading /></div>;
 
   const act = async (fn, okMsg) => {
     if (!order.orderNo) return;

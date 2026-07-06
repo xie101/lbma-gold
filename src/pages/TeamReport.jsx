@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { teamReport } from '../api';
+import Loading from '../components/Loading';
 
 const LEVELS = ['First level', 'Second level', 'Third level'];
 
@@ -8,12 +9,15 @@ export default function TeamReport() {
   const nav = useNavigate();
   const [level, setLevel] = useState(0);
   const [data, setData] = useState({});
+  const [initLoading, setInitLoading] = useState(true);
 
   useEffect(() => {
     teamReport().then(r => {
       setData(r.data?.data || r.data || {});
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => setInitLoading(false));
   }, []);
+
+  if (initLoading) return <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-20"><Loading /></div>;
 
   const STATS = [
     ['Team  balance', `USDT ${data.teamBalance || '0'}`],

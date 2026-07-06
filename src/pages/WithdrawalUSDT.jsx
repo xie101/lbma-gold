@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { postWithdraw, getProfile } from '../api';
+import Loading from '../components/Loading';
 
 import { inp } from '../utils/inputs';
 
@@ -13,10 +14,12 @@ export default function WithdrawalUSDT() {
   const [pwd, setPwd] = useState('');
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState({});
+  const [initLoading, setInitLoading] = useState(true);
 
-  useEffect(() => { getProfile().then(r => setProfile(r.data?.data || r.data || {})).catch(() => {}); }, []);
+  useEffect(() => { getProfile().then(r => setProfile(r.data?.data || r.data || {})).catch(() => {}).finally(() => setInitLoading(false)); }, []);
 
   const available = Number(profile.balance || 0) - Number(profile.frozen_balance || 0);
+  if (initLoading) return <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a]"><Loading /></div>;
 
   const handle = async (e) => {
     e.preventDefault();

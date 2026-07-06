@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProfile, removeToken } from '../api';
+import Loading from '../components/Loading';
 
 const MENU_ITEMS = [
   { img: '/images/my_re.png', label: 'Regarding data', path: '/record' },
@@ -26,6 +27,12 @@ export default function My() {
   }, []);
 
   const handleLogout = () => { removeToken(); nav('/login'); };
+
+  if (!profile) return (
+    <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a]">
+      <Loading />
+    </div>
+  );
 
   return (
     <>

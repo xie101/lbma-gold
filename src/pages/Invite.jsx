@@ -2,19 +2,23 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QRCode from 'qrcode';
 import { getProfile } from '../api';
+import Loading from '../components/Loading';
 
 export default function Invite() {
   const nav = useNavigate();
   const [inviteCode, setInviteCode] = useState('');
   const [copied, setCopied] = useState(false);
   const canvasRef = useRef(null);
+  const [initLoading, setInitLoading] = useState(true);
 
   useEffect(() => {
     getProfile().then(r => {
       const d = r.data?.data || r.data || {};
       if (d.inviteCode) setInviteCode(d.inviteCode);
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => setInitLoading(false));
   }, []);
+
+  if (initLoading) return <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10"><Loading /></div>;
 
   const link = `https://goldslbma.com/register/${inviteCode}`;
   useEffect(() => {

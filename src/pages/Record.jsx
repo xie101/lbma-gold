@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getOrder } from '../api';
+import Loading from '../components/Loading';
 
 const TABS = [
   { key: 'pending', label: 'Pending completion' },
@@ -12,8 +13,11 @@ export default function Record() {
   const nav = useNavigate();
   const [records, setRecords] = useState([]);
   const [tab, setTab] = useState('all');
+  const [initLoading, setInitLoading] = useState(true);
 
-  useEffect(() => { getOrder({ type: tab }).then(r => { const d = r.data?.data?.list || r.data?.data || r.data || []; setRecords(Array.isArray(d) ? d : []); }).catch(() => {}); }, [tab]);
+  useEffect(() => { getOrder({ type: tab }).then(r => { const d = r.data?.data?.list || r.data?.data || r.data || []; setRecords(Array.isArray(d) ? d : []); }).catch(() => {}).finally(() => setInitLoading(false)); }, [tab]);
+
+  if (initLoading) return <div className="min-h-screen max-w-[400px] mx-auto bg-cover bg-top bg-no-repeat pb-24" style={{ backgroundImage: "url('/images/logs_beijing.png')" }}><Loading /></div>;
 
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-cover bg-top bg-no-repeat pb-24"

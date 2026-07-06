@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { transactionHistory } from '../api';
+import Loading from '../components/Loading';
 
 export default function TransactionLogs() {
   const nav = useNavigate();
   const [tab, setTab] = useState('all');
   const [records, setRecords] = useState([]);
+  const [initLoading, setInitLoading] = useState(true);
 
   useEffect(() => {
     transactionHistory().then(r => {
       const d = r.data?.data?.list || r.data?.data || r.data || [];
       setRecords(Array.isArray(d) ? d : []);
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => setInitLoading(false));
   }, []);
+
+  if (initLoading) return <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-20"><Loading /></div>;
 
   const filtered = tab === 'all' ? records : records.filter(r =>
     tab === 'withdraw list' ? r.type?.toLowerCase().includes('withdraw') : r.type?.toLowerCase().includes('deposit')

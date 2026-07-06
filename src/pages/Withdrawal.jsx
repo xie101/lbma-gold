@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { postWithdraw, getProfile, getBank } from '../api';
-
 import { inp } from '../utils/inputs';
+import Loading from '../components/Loading';
 
 export default function Withdrawal() {
   const nav = useNavigate();
@@ -13,13 +13,17 @@ export default function Withdrawal() {
   const [pwd, setPwd] = useState('');
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState({});
+  const [initLoading, setInitLoading] = useState(true);
 
   useEffect(() => {
-    getProfile().then(r => setProfile(r.data?.data || r.data || {})).catch(() => {});
-    getBank().then(r => { const d = r.data?.data || r.data || {}; if (d.account) { setAccount(d.account); setIfsc(d.ifsc || ''); } }).catch(() => {});
+    Promise.all([
+      getProfile().then(r => setProfile(r.data?.data || r.data || {})).catch(() => {}),
+      getBank().then(r => { const d = r.data?.data || r.data || {}; if (d.account) { setAccount(d.account); setIfsc(d.ifsc || ''); } }).catch(() => {}),
+    ]).finally(() => setInitLoading(false));
   }, []);
 
   const available = Number(profile.balance || 0) - Number(profile.frozen_balance || 0);
+  if (initLoading) return <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10"><Loading /></div>;
 
   const handle = async (e) => {
     e.preventDefault();

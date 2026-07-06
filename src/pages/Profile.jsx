@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProfile } from '../api';
+import Loading from '../components/Loading';
 
 export default function Profile() {
   const nav = useNavigate();
@@ -13,6 +14,8 @@ export default function Profile() {
   }, []);
 
   const kycText = (s) => s === 'approved' ? 'Verified' : s === 'pending' ? 'Reviewing' : s === 'rejected' ? 'Rejected' : null;
+
+  if (!profile) return <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a]"><Loading /></div>;
   const items = [
     { label: 'Real Name', path: '/realname', value: kycText(profile?.kyc_status) || profile?.realName || 'Set' },
     { label: 'Bind Wallet Address', path: '/bank', value: 'Set' },

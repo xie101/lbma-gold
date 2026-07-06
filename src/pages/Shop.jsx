@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { getProfile, submitOrder, vipList } from '../api';
+import Loading from '../components/Loading';
 
 
 export default function Shop() {
@@ -10,15 +11,20 @@ export default function Shop() {
   const [profile, setProfile] = useState({});
   const [vip, setVip] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [initLoading, setInitLoading] = useState(true);
 
   useEffect(() => {
-    getProfile().then(r => setProfile(r.data?.data || r.data || {})).catch(() => {});
-    vipList().then(r => {
-      const data = r.data?.data || r.data || {};
-      const list = data.list || [];
-      setVip(list.find(l => l.level === Number(tier)) || list[0] || null);
-    }).catch(() => {});
+    Promise.all([
+      getProfile().then(r => setProfile(r.data?.data || r.data || {})).catch(() => {}),
+      vipList().then(r => {
+        const data = r.data?.data || r.data || {};
+        const list = data.list || [];
+        setVip(list.find(l => l.level === Number(tier)) || list[0] || null);
+      }).catch(() => {}),
+    ]).finally(() => setInitLoading(false));
   }, [tier]);
+
+  if (initLoading) return <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a]"><Loading /></div>;
 
   const balance = Number(profile?.balance || 0);
 
