@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { removeToken } from '../api';
+import { useTranslation } from 'react-i18next';
 
 export default function Account() {
+  const { t } = useTranslation();
   const nav = useNavigate();
 
   const items = [

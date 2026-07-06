@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getDepositConfig } from '../api';
+import { useTranslation } from 'react-i18next';
 
 export default function Deposits() {
   const { type } = useParams();
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [addr, setAddr] = useState('');
 

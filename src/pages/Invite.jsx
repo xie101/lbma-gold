@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import QRCode from 'qrcode';
 import { getProfile } from '../api';
 import Loading from '../components/Loading';
+import { useTranslation } from 'react-i18next';
 
 export default function Invite() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [inviteCode, setInviteCode] = useState('');
   const [copied, setCopied] = useState(false);

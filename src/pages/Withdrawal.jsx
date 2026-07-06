@@ -4,8 +4,10 @@ import { notyf } from '../utils/notify';
 import { postWithdraw, getProfile, getBank } from '../api';
 import { inp } from '../utils/inputs';
 import Loading from '../components/Loading';
+import { useTranslation } from 'react-i18next';
 
 export default function Withdrawal() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [amount, setAmount] = useState('');
   const [account, setAccount] = useState('');

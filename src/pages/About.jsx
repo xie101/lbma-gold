@@ -2,6 +2,7 @@ import DOMPurify from 'dompurify';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAbout } from '../api';
+import { useTranslation } from 'react-i18next';
 
 const ABOUT_HTML = `
 <p><strong>About LBMA GOLD</strong></p>
@@ -24,6 +25,7 @@ const ABOUT_HTML = `
 `;
 
 export default function About() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [html, setHtml] = useState(ABOUT_HTML);
 

@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { depositHistory } from '../api';
 import Loading from '../components/Loading';
+import { useTranslation } from 'react-i18next';
 
 export default function DepositHistory() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [records, setRecords] = useState([]);
   const [initLoading, setInitLoading] = useState(true);

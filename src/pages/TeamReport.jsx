@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { teamReport } from '../api';
 import Loading from '../components/Loading';
+import { useTranslation } from 'react-i18next';
 
 const LEVELS = ['First level', 'Second level', 'Third level'];
 
 export default function TeamReport() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [level, setLevel] = useState(0);
   const [data, setData] = useState({});

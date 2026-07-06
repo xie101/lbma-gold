@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { postWithdraw, getProfile } from '../api';
 import Loading from '../components/Loading';
+import { useTranslation } from 'react-i18next';
 
 import { inp } from '../utils/inputs';
 
 export default function WithdrawalUSDT() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [amount, setAmount] = useState('');
   const [address, setAddress] = useState('');

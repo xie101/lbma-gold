@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function NotFound() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] flex flex-col items-center justify-center pb-10">

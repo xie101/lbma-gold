@@ -3,10 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { getProfile, submitOrder, vipList } from '../api';
 import Loading from '../components/Loading';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Shop() {
   const { tier } = useParams();
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [profile, setProfile] = useState({});
   const [vip, setVip] = useState(null);

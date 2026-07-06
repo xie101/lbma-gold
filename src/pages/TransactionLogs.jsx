@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { transactionHistory } from '../api';
 import Loading from '../components/Loading';
+import { useTranslation } from 'react-i18next';
 
 export default function TransactionLogs() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [tab, setTab] = useState('all');
   const [records, setRecords] = useState([]);

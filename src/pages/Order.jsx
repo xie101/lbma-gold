@@ -3,10 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { orderInfo, doOrder, rotOrder } from '../api';
 import Loading from '../components/Loading';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Order() {
   const { orderNumber } = useParams();
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [order, setOrder] = useState({});
   const [acting, setActing] = useState(false);

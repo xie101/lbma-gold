@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { myTickets, postTicket } from '../api';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Service() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [tickets, setTickets] = useState([]);
   const [subject, setSubject] = useState('');

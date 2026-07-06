@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProfile } from '../api';
+import { useTranslation } from 'react-i18next';
 
 export default function WithdrawalType() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [profile, setProfile] = useState({});
 

@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import QRCode from 'qrcode';
 import { getDepositConfig } from '../api';
+import { useTranslation } from 'react-i18next';
 
 export default function Deposit() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [copied, setCopied] = useState(false);
   const [addr, setAddr] = useState('');
