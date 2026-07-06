@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { vipList } from '../api';
+import { useTranslation } from 'react-i18next';
 
 export default function Packages() {
   const nav = useNavigate();
+  const { t } = useTranslation();
   const [vipData, setVipData] = useState({ currentLevel: 1, progress: { current: 0, max: 0 }, list: [] });
 
   useEffect(() => {
@@ -32,15 +34,15 @@ export default function Packages() {
           <div className="mt-2 relative">
             <img src="/images/shop_dengji.png" height="28" alt="Level" className="h-[22px]" />
             <span className="absolute inset-0 flex items-center justify-center text-xs font-bold text-[#3a2a00]">
-              LEVEL {vipData.currentLevel}
+              {t('level')} {vipData.currentLevel}
             </span>
           </div>
-          <p className="text-[#ecdbb8] text-xs mt-1">current level</p>
+          <p className="text-[#ecdbb8] text-xs mt-1">{t('current_level')}</p>
         </div>
 
         <div className="px-5 mt-6">
           <div className="flex justify-between items-center mb-1">
-            <span className="text-white text-xs">next level away</span>
+            <span className="text-white text-xs">{t('next_level_away')}</span>
             <span className="text-[var(--brand)] text-xs">{vipData.progress.current}/{vipData.progress.max}</span>
           </div>
           <div className="relative h-[10px] rounded-full overflow-hidden"
@@ -62,7 +64,7 @@ export default function Packages() {
                   <span className="text-[#d4bb94] font-bold text-[11px]">(Commission: {lv.commission})</span>
                 </div>
                 <span className="cursor-pointer w-[70px] h-[26px] flex items-center justify-center text-[#ceb995] text-[10px] bg-[#2f2f27] border-1 border-[#5b5040] rounded-full"
-                  onClick={() => nav('/record')}>History</span>
+                  onClick={() => nav('/record')}>{t('history')}</span>
               </div>
 
               <div className="flex gap-6 px-3 mb-3">
@@ -82,7 +84,7 @@ export default function Packages() {
               <div className="px-1 ml-3 mb-3 w-[110px] h-[28px] flex items-center justify-center gap-1 text-[10px] text-[#3a2a00] font-bold bg-center bg-no-repeat cursor-pointer"
                 style={{ backgroundImage: "url('/images/shop_liji.png')", backgroundSize: '100% 100%' }}
                 onClick={() => nav('/shop/' + lv.level)}>
-                <span>Upgrade now</span>
+                <span>{t('upgrade_now')}</span>
                 <img src="/images/shop_jiantou.png" width="14" alt="arrow" />
               </div>
             </div>

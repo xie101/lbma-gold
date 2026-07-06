@@ -1,16 +1,18 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getBanner } from '../api';
+import { useTranslation } from 'react-i18next';
 
 const HEADER_LINKS = [
-  { img: '/images/home_la.png', label: 'Language', path: '/language' },
-  { img: '/images/home_ab.png', label: 'About', path: '/about' },
-  { img: '/images/home_qa.png', label: 'Q&A', path: '/q-n-a' },
-  { img: '/images/home_te.png', label: 'T&C', path: '/terms-conditions' },
+  { img: '/images/home_la.png', key: 'language', path: '/language' },
+  { img: '/images/home_ab.png', key: 'about', path: '/about' },
+  { img: '/images/home_qa.png', key: 'qa', path: '/q-n-a' },
+  { img: '/images/home_te.png', key: 'tc', path: '/terms-conditions' },
 ];
 
 export default function Home() {
   const nav = useNavigate();
+  const { t } = useTranslation();
   const [banners, setBanners] = useState([]);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ export default function Home() {
         <div className="flex mb-3 gap-2 justify-around w-full">
           {HEADER_LINKS.map(item => (
             <span key={item.path} className="cursor-pointer w-[80px] flex flex-col items-center gap-1" onClick={() => nav(item.path)}>
-              <img src={item.img} width="50" alt={item.label} /><span className="text-xs">{item.label}</span>
+              <img src={item.img} width="50" alt={item.label} /><span className="text-xs">{t(item.key)}</span>
             </span>
           ))}
         </div>
