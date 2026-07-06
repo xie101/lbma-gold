@@ -1,23 +1,25 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { getProfile, removeToken } from '../api';
 import Loading from '../components/Loading';
 
 const MENU_ITEMS = [
-  { img: '/images/my_re.png', label: 'Regarding data', path: '/record' },
-  { img: '/images/my_top.png', label: 'Deposit', path: '/deposit' },
-  { img: '/images/my_wi.png', label: 'withdrawals', path: '/withdrawalType' },
-  { img: '/images/my_to.png', label: 'Deposit history', path: '/deposit-history' },
-  { img: '/images/my_with.png', label: 'withdrawal history', path: '/withdrawal-history' },
-  { img: '/images/home_ab.png', label: 'About', path: '/about' },
-  { img: '/images/home_qa.png', label: 'Q&A', path: '/q-n-a' },
-  { img: '/images/home_te.png', label: 'T&C', path: '/terms-conditions' },
-  { img: '/images/home_la.png', label: 'Language', path: '/language' },
-  { img: '/images/home_ce.png', label: 'Customer service', path: '/service' },
+  { img: '/images/my_re.png', key: 'regarding_data', path: '/record' },
+  { img: '/images/my_top.png', key: 'deposit', path: '/deposit' },
+  { img: '/images/my_wi.png', key: 'withdrawals', path: '/withdrawalType' },
+  { img: '/images/my_to.png', key: 'deposit_history', path: '/deposit-history' },
+  { img: '/images/my_with.png', key: 'withdrawal_history', path: '/withdrawal-history' },
+  { img: '/images/home_ab.png', key: 'about', path: '/about' },
+  { img: '/images/home_qa.png', key: 'qa', path: '/q-n-a' },
+  { img: '/images/home_te.png', key: 'tc', path: '/terms-conditions' },
+  { img: '/images/home_la.png', key: 'language', path: '/language' },
+  { img: '/images/home_ce.png', key: 'customer_service', path: '/service' },
 ];
 
 export default function My() {
   const nav = useNavigate();
+  const { t } = useTranslation();
   const [profile, setProfile] = useState(null);
 
   useEffect(() => {
@@ -98,7 +100,7 @@ export default function My() {
             >
               <div className="flex items-center gap-3">
                 <img src={item.img} width="28" alt={item.label} />
-                <span className="text-white text-sm">{item.label}</span>
+                <span className="text-white text-sm">{t(item.key)}</span>
               </div>
               <img src="/images/my_jiantou.png" width="20" alt="arrow" />
             </div>

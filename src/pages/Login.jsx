@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { login, setToken } from '../api';
+import { useTranslation } from 'react-i18next';
 
 
 export default function Login() {
   const nav = useNavigate();
+  const { t } = useTranslation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPw, setShowPw] = useState(false);
@@ -93,24 +95,24 @@ export default function Login() {
               className="w-[200px] h-[80px] bg-transparent text-[#ffed88] border-none bg-cover bg-no-repeat bg-center disabled:opacity-50"
               style={{ backgroundImage: "url('/images/auth_denglu.png')" }}>
               <span className="mt-[-20px] flex items-center justify-center">
-                {loading ? 'Loading...' : 'Login'}
+                {loading ? t('loading') : t('login')}
               </span>
             </button>
           </div>
 
           <div className="mt-5 text-gray-400 text-xs">
-            Don't have an account?
-            <span className="inline cursor-pointer text-white ml-1" onClick={() => nav('/register')}>Register</span>
+            {t('dont_have_account')}
+            <span className="inline cursor-pointer text-white ml-1" onClick={() => nav('/register')}>{t('register_now')}</span>
           </div>
 
           <div className="text-left mt-4 relative" style={{ fontSize: 9, color: '#9ca3af', lineHeight: 1.4 }}>
             <label className="flex items-start gap-2 cursor-pointer" style={{ display: 'inline' }}>
               <input type="checkbox" checked={agreed} onChange={e => setAgreed(e.target.checked)} className="mt-0.5 accent-blue-500" />
             </label>
-            <span>By Continuing you agree to the </span>
-            <span className="cursor-pointer text-white" style={{ fontSize: 9 }} onClick={() => nav('/terms-conditions')}>Terms of Service</span>
-            <span> and </span>
-            <span className="cursor-pointer text-white" style={{ fontSize: 9 }} onClick={() => nav('/privacy-policy')}>Privacy Policy</span>
+            <span>{t('terms_agree')} </span>
+            <span className="cursor-pointer text-white" style={{ fontSize: 9 }} onClick={() => nav('/terms-conditions')}>{t('terms_service')}</span>
+            <span> {t('and')} </span>
+            <span className="cursor-pointer text-white" style={{ fontSize: 9 }} onClick={() => nav('/privacy-policy')}>{t('privacy_policy')}</span>
           </div>
         </form>
       </div>
