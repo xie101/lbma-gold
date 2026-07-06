@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { postConvert, getProfile } from '../api';
@@ -6,6 +7,7 @@ import Loading from '../components/Loading';
 
 
 export default function Convert() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [amount, setAmount] = useState('');
   const [password, setPassword] = useState('');
@@ -37,14 +39,14 @@ export default function Convert() {
       </div>
       <div className="px-4 mt-2">
         <div className="bg-[#0a1a3a] rounded-xl p-4 mb-4">
-          <p className="text-gray-400 text-xs mb-1">Your Balance</p>
+          <p className="text-gray-400 text-xs mb-1">{t('your_balance')}</p>
           <h2 className="text-[var(--brand)] text-2xl font-bold">${(Number(profile?.balance || 0) - Number(profile?.frozen_balance || 0)).toFixed(2)}</h2>
         </div>
         <div className="bg-[#0a1a3a] rounded-xl p-4">
           <form onSubmit={handleConvert}>
             {/* Enter Amount */}
             <div className="mb-4">
-              <label className="text-gray-400 text-xs block mb-2">Enter Amount</label>
+              <label className="text-gray-400 text-xs block mb-2">{t('enter_amount')}</label>
               <div className="flex items-center bg-[#0a0e1a] rounded-lg border border-[#374151] overflow-hidden">
                 <span className="text-gray-400 text-sm pl-3">$</span>
                 <input type="number" required min="1"
@@ -65,7 +67,7 @@ export default function Convert() {
                     className="MuiInputBase-input MuiOutlinedInput-input Mui-disabled MuiInputBase-inputSizeSmall css-17opruk"
                     defaultValue="Balance" />
                   <fieldset aria-hidden="true" className="MuiOutlinedInput-notchedOutline css-nqlg3w">
-                    <legend className="css-14lo706"><span>Convert to</span></legend>
+                    <legend className="css-14lo706"><span>{t('convert_to')}</span></legend>
                   </fieldset>
                 </div>
               </div>
@@ -91,7 +93,7 @@ export default function Convert() {
 
             <button type="submit" disabled={loading}
               className="w-full h-[44px] rounded-xl bg-[var(--brand)] text-[#1a1a2e] font-bold text-sm disabled:opacity-50 border-none cursor-pointer">
-              {loading ? 'Converting...' : 'Convert Now'}
+              {loading ? t('loading') : t('convert_now')}
             </button>
           </form>
         </div>

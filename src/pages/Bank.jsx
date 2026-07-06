@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { setBank, getBank } from '../api';
 import { notyf } from '../utils/notify';
+import { useTranslation } from 'react-i18next';
 
 import { inp } from '../utils/inputs';
 
 export default function Bank() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const { wallettype } = useParams();
   const [info, setInfo] = useState({ name: '', account: '', ifsc: '' });
@@ -30,7 +32,7 @@ export default function Bank() {
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">
       <div className="flex items-center px-4 pt-3 pb-4">
         <span className="text-white cursor-pointer text-lg" onClick={() => nav(-1)}><i className="fa-solid fa-chevron-left"></i></span>
-        <span className="flex-1 text-center text-white font-bold text-base">Bank Card{wallettype ? ` (${wallettype})` : ''}</span>
+        <span className="flex-1 text-center text-white font-bold text-base">t('bank'){wallettype ? ` (${wallettype})` : ''}</span>
         <span className="w-[18px]"></span>
       </div>
       <form onSubmit={handle} className="px-4">

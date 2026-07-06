@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { postDeposit } from '../api';
+import { useTranslation } from 'react-i18next';
 
 import { inp } from '../utils/inputs';
 
 export default function DepositForm() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [amount, setAmount] = useState('');
   const [loading, setLoading] = useState(false);

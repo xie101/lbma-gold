@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { getProfile } from '../api';
 import Loading from '../components/Loading';
 
 export default function Profile() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [profile, setProfile] = useState(null);
 
@@ -17,17 +19,17 @@ export default function Profile() {
 
   if (!profile) return <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a]"><Loading /></div>;
   const items = [
-    { label: 'Real Name', path: '/realname', value: kycText(profile?.kyc_status) || profile?.realName || 'Set' },
-    { label: 'Bind Wallet Address', path: '/bank', value: 'Set' },
-    { label: 'Password management', path: '/password' },
-    { label: 'Withdraw Password management', path: '/withdraw-password' },
+    { label: t('real_name'), path: '/realname', value: kycText(profile?.kyc_status) || profile?.realName || 'Set' },
+    { label: t('wallet_address'), path: '/bank', value: 'Set' },
+    { label: t('password_manage'), path: '/password' },
+    { label: t('withdraw_password'), path: '/withdraw-password' },
   ];
 
   return (
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">
       <div className="flex items-center px-4 pt-3 pb-4">
         <span className="text-white cursor-pointer text-lg" onClick={() => nav(-1)}><i className="fa-solid fa-chevron-left"></i></span>
-        <span className="flex-1 text-center text-white font-bold text-base">Profile</span>
+        <span className="flex-1 text-center text-white font-bold text-base">{t('security_settings')}</span>
         <span className="w-[18px]"></span>
       </div>
       <div className="px-4 mt-2">

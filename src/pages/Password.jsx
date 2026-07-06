@@ -2,11 +2,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { setPassword } from '../api';
+import { useTranslation } from 'react-i18next';
 
 
 import { inp } from '../utils/inputs';
 
 export default function Password() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [oldPw, setOldPw] = useState('');
   const [newPw, setNewPw] = useState('');
@@ -29,7 +31,7 @@ export default function Password() {
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">
       <div className="flex items-center px-4 pt-3 pb-4">
         <span className="text-white cursor-pointer text-lg" onClick={() => nav(-1)}><i className="fa-solid fa-chevron-left"></i></span>
-        <span className="flex-1 text-center text-white font-bold text-base">Change Password</span>
+        <span className="flex-1 text-center text-white font-bold text-base">{t('password_manage')}</span>
         <span className="w-[18px]"></span>
       </div>
       <form onSubmit={handle} className="px-4">

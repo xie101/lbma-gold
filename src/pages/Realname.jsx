@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { setName, getProfile } from '../api';
+import { useTranslation } from 'react-i18next';
 
 import { inp } from '../utils/inputs';
 const toBase64 = async (file) => {
@@ -12,6 +13,7 @@ const toBase64 = async (file) => {
 };
 
 export default function Realname() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [profile, setProfile] = useState(null);
   const [name, setNameVal] = useState('');
@@ -51,7 +53,7 @@ export default function Realname() {
     <div className="min-h-screen max-w-[400px] mx-auto bg-[#0a0e1a] pb-10">
       <div className="flex items-center px-4 pt-3 pb-4">
         <span className="text-white cursor-pointer text-lg" onClick={() => nav(-1)}><i className="fa-solid fa-chevron-left"></i></span>
-        <span className="flex-1 text-center text-white font-bold text-base">Real Name Verification</span>
+        <span className="flex-1 text-center text-white font-bold text-base">{t('realname')}</span>
         <span className="w-[18px]"></span>
       </div>
 

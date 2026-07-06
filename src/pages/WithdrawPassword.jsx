@@ -2,10 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { notyf } from '../utils/notify';
 import { setWithdrawPassword } from '../api';
+import { useTranslation } from 'react-i18next';
 
 import { inp } from '../utils/inputs';
 
 export default function WithdrawPassword() {
+  const { t } = useTranslation();
   const nav = useNavigate();
   const [pw, setPw] = useState('');
   const [confirm, setConfirm] = useState('');
